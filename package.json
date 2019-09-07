@@ -1,5 +1,5 @@
 {
-  "name": "mern-login-singup-component",
+  "name": "list-wala",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shawn-dsilva/mern-login-signup-component.git"
+    "url": "git+https://github.com/shawn-dsilva/list-wala.git"
   },
   "author": "Shawn D'silva",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shawn-dsilva/mern-login-signup-component/issues"
+    "url": "https://github.com/shawn-dsilva/list-wala/issues"
   },
-  "homepage": "https://github.com/shawn-dsilva/mern-login-signup-component#readme",
+  "homepage": "https://github.com/shawn-dsilva/list-wala#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.3.1",
