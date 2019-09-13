@@ -31,7 +31,7 @@ router.post('/todo/:id', (req, res) => {
     .then( list => res.json(list));
 })
 
-// Delete a Todo from a given list
+// Delete a single Todo from a given list
 router.delete('/todo/:id', (req, res) => {
   newTodo = new Todo({
     name: req.body.name
@@ -39,7 +39,8 @@ router.delete('/todo/:id', (req, res) => {
   List.findOne(
     { _id: req.params.id}, (err, list) => {
       list.todos.id(req.body.id).remove();
-      list.save();
+      list.save()
+      .then(list => res.json(list));
     });
     // .then( list => list.todos.id(req.body.id).remove().then(list.save()));
 })
