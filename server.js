@@ -5,7 +5,6 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const router = express.Router();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const path = require("path");
 
 // Constants
 const {
@@ -62,6 +61,8 @@ router.get("/", (req, res) => res.send("HELLO FRIEND"));
 
 // API / Routes;
 app.use("/api/users", require("./routes/users"));
+app.use("/api/lists", require("./routes/lists"));
+
 // app.use("/api/auth", require("./routes/auth"));
 
 app.listen(PORT, () => console.log(`Server started on http://${HOST}:${PORT}`));

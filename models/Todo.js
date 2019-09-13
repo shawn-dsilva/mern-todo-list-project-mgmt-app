@@ -4,10 +4,6 @@ const item = require("./Item");
 
 // Create Schema
 const TodoSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User"
-  },
   name: {
     type: String,
     required: true
@@ -22,7 +18,7 @@ const TodoSchema = new Schema({
     enum: ["Done", "InProgress", "NotStarted"],
     default: "NotStarted"
   },
-  checklist: [item]
+  checklist: [item.schema]
 });
 
 module.exports = Todo = mongoose.model("todo", TodoSchema);
