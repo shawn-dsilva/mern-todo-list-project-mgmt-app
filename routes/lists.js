@@ -7,3 +7,12 @@ router.get( '/' , (req, res) => {
       .sort({ date: -1 })
       .then( lists => res.json(lists));
 })
+
+router.post( '/' , (req, res) => {
+  newList = new List({
+    name: req.body.name
+  });
+
+  newList.save().then( list => res.json(list));
+})
+
