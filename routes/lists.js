@@ -32,7 +32,7 @@ router.post("/todo/:id", isAuth, (req, res) => {
   List.findOneAndUpdate(
     { _id: req.params.id, user: req.session.user.id },
     {
-      $push: { todos: newTodo }
+      $push: { todos: newTodo } // Adds new ToDo to todos array
     },
     { new: true } // This option returns the modified document, not the original one
   ).then((list) => res.json(list));
