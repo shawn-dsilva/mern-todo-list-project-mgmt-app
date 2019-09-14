@@ -6,7 +6,8 @@ const Item = require("./Item");
 const ListSchema = new Schema ({
     user:{
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
     },
     name: {
         type: String,
