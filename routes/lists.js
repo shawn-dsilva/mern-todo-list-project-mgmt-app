@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const List = require("../models/List");
 const Todo = require("../models/Todo");
-const { isAuth } = require("../utils/authcheck";
+const { isAuth } = require("../utils/authcheck");
 
 // Get All the Lists
 router.get( '/' , isAuth, (req, res) => {
@@ -12,7 +12,7 @@ router.get( '/' , isAuth, (req, res) => {
 })
 
 // Make a new List
-router.post( '/' , (req, res) => {
+router.post( '/' ,  isAuth, (req, res) => {
   newList = new List({
     name: req.body.name
   });
@@ -21,7 +21,7 @@ router.post( '/' , (req, res) => {
 })
 
 // Add a new ToDo to the list
-router.post('/todo/:id', (req, res) => {
+router.post('/todo/:id',  isAuth, (req, res) => {
   newTodo = new Todo({
     name: req.body.name
   })
@@ -32,7 +32,7 @@ router.post('/todo/:id', (req, res) => {
 })
 
 // Delete a single Todo from a given list
-router.delete('/todo/:id', (req, res) => {
+router.delete('/todo/:id',  isAuth, (req, res) => {
   newTodo = new Todo({
     name: req.body.name
   })

@@ -4,8 +4,7 @@ exports.isAuth = (req,res,next) => {
       next();
   }
   else {
-      err = new Error("You Need to Be Logged in to do this \n Access Denied ");
-      err.status = 403;
-      return next(err);
+      err = res.status(403).json("You Need to Be Logged in to do this. Access Denied ")
+      return err;
   }
 };
