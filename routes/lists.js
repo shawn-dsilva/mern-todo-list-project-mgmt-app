@@ -8,15 +8,18 @@ const { isAuth } = require("../utils/authcheck");
 router.get( '/' , isAuth, (req, res) => {
   List.find()
       .sort({ date: -1 })
+      .populate('user')
       .then( lists => res.json(lists));
 })
 
 // Make a new List
 router.post( '/' ,  isAuth, (req, res) => {
   newList = new List({
-    name: req.body.name
+    name: req.body.name,
+    user: req.session.user.id
   });
 
+  console.log(req.session.user.id);
   newList.save().then( list => res.json(list));
 })
 
