@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const List = require("../models/List");
 const Todo = require("../models/Todo");
-
+const { isAuth } = require("../utils/authcheck";
 
 // Get All the Lists
-router.get( '/' , (req, res) => {
+router.get( '/' , isAuth, (req, res) => {
   List.find()
       .sort({ date: -1 })
       .then( lists => res.json(lists));
