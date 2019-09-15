@@ -13,10 +13,10 @@ router.post("/", isAuth, createNewList);
 
 // Add a new ToDo to the list
 // This is an Atomic Operation
-router.post("/todo/:id", isAuth, addTodo );
+router.post("/todo/:listId", isAuth, addTodo );
 
 // Delete a single Todo from a given list
 // This is an Atomic Operation
-router.delete("/todo/:id", isAuth, deleteTodo );
+router.delete("/todo/:listId/:todoId", isAuth, deleteTodo );
 
 module.exports = router;

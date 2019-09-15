@@ -21,7 +21,7 @@ exports.addTodo = (req, res) => {
     name: req.body.name
   });
   List.findOneAndUpdate(
-    { _id: req.params.id, user: req.session.user.id },
+    { _id: req.params.listId, user: req.session.user.id },
     {
       $push: { todos: newTodo } // Adds new ToDo to todos array
     },
@@ -31,9 +31,9 @@ exports.addTodo = (req, res) => {
 
 exports.deleteTodo =  (req, res) => {
   List.findOneAndUpdate(
-    { _id: req.params.id, user: req.session.user.id },
+    { _id: req.params.listId, user: req.session.user.id },
     {
-      $pull: { todos: { _id: req.body.id } } // Deletes the todo using it's id from request body
+      $pull: { todos: { _id: req.params.todoId } } // Deletes the todo using it's id from request body
     },
     { new: true }
   ).then((list) => res.json(list));
