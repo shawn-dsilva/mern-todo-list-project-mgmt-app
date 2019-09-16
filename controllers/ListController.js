@@ -62,11 +62,6 @@ exports.addItemInTodo = (req,res ) => {
   List.findOneAndUpdate(
     { user: req.session.user.id,
       _id: req.params.listId,
-      todos: {
-        $elemMatch: {
-          _id: req.params.todoId
-        }
-      }
     },
     {
       $push: { "todos.$[todo].checklist": newItem } // Adds new Item to checklist array
@@ -93,11 +88,6 @@ exports.deleteItemInTodo = (req,res ) => {
   List.findOneAndUpdate(
     { user: req.session.user.id,
       _id: req.params.listId,
-      todos: {
-        $elemMatch: {
-          _id: req.params.todoId
-        }
-      }
     },
     {
       $pull: { "todos.$[todo].checklist": { _id: req.params.itemId } } // Adds new Item to checklist array
