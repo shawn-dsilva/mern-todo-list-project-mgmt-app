@@ -1,5 +1,6 @@
 const List = require("../models/List");
 const Todo = require("../models/Todo");
+const Item = require("../models/Item");
 
 exports.getAllLists = (req, res) => {
   List.find()
@@ -29,12 +30,50 @@ exports.addTodo = (req, res) => {
   ).then((list) => res.json(list));
 };
 
-exports.deleteTodo =  (req, res) => {
+exports.deleteTodo = (req, res) => {
   List.findOneAndUpdate(
     { _id: req.params.listId, user: req.session.user.id },
     {
       $pull: { todos: { _id: req.params.todoId } } // Deletes the todo using it's id from request body
     },
     { new: true }
+  ).then((list) => res.json(list));
+};
+
+exports.addItem = (req, res) => {
+  newItem = new Item({
+    name: req.body.name
+  });
+
+    List.findOneAndUpdate(
+      { _id: req.params.listId, user: req.session.user.id },
+      {
+        $push: { checklist: newItem } // Adds new Item to checklist array
+      },
+      { new: true } // This option returns the modified document, not the original one
+    ).then((list) => res.json(list));
+  };
+
+exports.addItemInTodo = (req,res ) => {
+  newItem = new Item({
+    name: req.body.name
+  });
+
+  List.findOneAndUpdate(
+    { user: req.session.user.id,
+      _id: req.params.listId,
+      todos: {
+        $elemMatch: {
+          _id: req.params.todoId
+        }
+      }
+    },
+    {
+      $push: { "todos.$[todo].checklist": newItem } // Adds new Item to checklist array
+    },
+    {
+      "arrayFilters": [ { "todo._id" : req.params.todoId }],
+      "new": true // This option returns the modified document, not the original one
+    }
   ).then((list) => res.json(list));
 };
