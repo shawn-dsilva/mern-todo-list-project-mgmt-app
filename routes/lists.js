@@ -32,6 +32,6 @@ router.post("/:listId/todo/:todoId", isAuth, addItemInTodo );
 
 // Delete a single item from a given checklist
 // This is an Atomic Operation
-// router.delete("/list/:listId/todo/:todoId", isAuth, deleteItem );
+router.delete("/:listId/item/:itemId", isAuth, deleteItem );
 
 module.exports = router;

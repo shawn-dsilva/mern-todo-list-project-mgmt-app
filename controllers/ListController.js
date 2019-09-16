@@ -77,3 +77,13 @@ exports.addItemInTodo = (req,res ) => {
     }
   ).then((list) => res.json(list));
 };
+
+exports.deleteItem = (req, res) => {
+    List.findOneAndUpdate(
+      { _id: req.params.listId, user: req.session.user.id },
+      {
+        $pull: { checklist: { _id: req.params.itemId } } // Adds new Item to checklist array
+      },
+      { new: true } // This option returns the modified document, not the original one
+    ).then((list) => res.json(list));
+  };
