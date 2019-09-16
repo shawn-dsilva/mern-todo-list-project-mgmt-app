@@ -86,4 +86,25 @@ exports.deleteItem = (req, res) => {
       },
       { new: true } // This option returns the modified document, not the original one
     ).then((list) => res.json(list));
-  };
+};
+
+exports.deleteItemInTodo = (req,res ) => {
+
+  List.findOneAndUpdate(
+    { user: req.session.user.id,
+      _id: req.params.listId,
+      todos: {
+        $elemMatch: {
+          _id: req.params.todoId
+        }
+      }
+    },
+    {
+      $pull: { "todos.$[todo].checklist": { _id: req.params.itemId } } // Adds new Item to checklist array
+    },
+    {
+      "arrayFilters": [ { "todo._id" : req.params.todoId }],
+      "new": true // This option returns the modified document, not the original one
+    }
+  ).then((list) => res.json(list));
+};
