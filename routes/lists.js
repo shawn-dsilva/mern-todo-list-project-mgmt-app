@@ -24,8 +24,12 @@ router.delete("/:listId/todo/:todoId", isAuth, deleteTodo );
 // This is an Atomic operation
 router.post("/checklist/:listId", isAuth, addItem );
 
+//Add a checklist item in a Todo
+// This is an Atomic operation
 router.post("/:listId/todo/:todoId", isAuth, addItemInTodo );
 
+//Change status to InProgress, Done or NotStarted
+// This is an Atomic operation
 router.put("/:listId/todo/:todoId", isAuth, changeStatusTodo );
 
 
@@ -34,7 +38,7 @@ router.put("/:listId/todo/:todoId", isAuth, changeStatusTodo );
 router.put("/:listId/item/:itemId", isAuth, markDone );
 
 
-//Change a checklist item state to done
+//Change a checklist item inside a Todo's state to done
 // This is an Atomic operation
 router.put("/:listId/todo/:todoId/item/:itemId", isAuth, markDoneInTodo );
 
@@ -42,7 +46,7 @@ router.put("/:listId/todo/:todoId/item/:itemId", isAuth, markDoneInTodo );
 // This is an Atomic Operation
 router.delete("/:listId/item/:itemId", isAuth, deleteItem );
 
-// Delete a single item from a given checklist
+// Delete a single item from a given checklist in a Todo
 // This is an Atomic Operation
 router.delete("/:listId/todo/:todoId/item/:itemId", isAuth, deleteItemInTodo );
 
