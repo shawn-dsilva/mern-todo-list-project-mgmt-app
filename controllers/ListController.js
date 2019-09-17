@@ -30,6 +30,29 @@ exports.addTodo = (req, res) => {
   ).then((list) => res.json(list));
 };
 
+exports.changeStatusTodo = (req, res) => {
+  const status = req.body.status.toString();
+  switch(status) {
+    case 'Done':
+    case 'InProgress':
+    case 'NotStarted':
+        List.findOneAndUpdate(
+          { _id: req.params.listId, user: req.session.user.id },
+          {
+            $set: { "todos.$[todos].status": req.body.status } // Adds new ToDo to todos array
+          },
+          {
+            "arrayFilters": [ { "todos._id" : req.params.todoId } ],
+            "new": true,
+         }
+        ).then((list) => res.json(list));
+        break;
+    default:
+      res.status(422).json("Error : Invalid Input");
+  }
+
+};
+
 exports.deleteTodo = (req, res) => {
   List.findOneAndUpdate(
     { _id: req.params.listId, user: req.session.user.id },
