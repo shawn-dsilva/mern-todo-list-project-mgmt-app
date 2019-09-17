@@ -73,13 +73,27 @@ exports.addItemInTodo = (req,res ) => {
   ).then((list) => res.json(list));
 };
 
+exports.markDone = (req, res) => {
+
+    List.findOneAndUpdate(
+      { _id: req.params.listId, user: req.session.user.id },
+      {
+        $set: { "checklist.$[item].isDone": true } // Adds new Item to checklist array
+      },
+      {
+        "arrayFilters": [ {"item._id": req.params.itemId }],
+        "new": true
+       } // This option returns the modified document, not the original one
+    ).then((list) => res.json(list));
+};
+
 exports.markDoneInTodo = (req, res) => {
   List.findOneAndUpdate(
     { user: req.session.user.id,
       _id: req.params.listId,
     },
     {
-      $set: { "todos.$[todos].checklist.$[item].isDone": false  } // Adds new Item to checklist array
+      $set: { "todos.$[todos].checklist.$[item].isDone": true  } // Adds new Item to checklist array
     },
     {
       "arrayFilters": [ { "todos._id" : req.params.todoId }, {"item._id": req.params.itemId }],

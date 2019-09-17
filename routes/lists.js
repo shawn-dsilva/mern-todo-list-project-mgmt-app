@@ -3,7 +3,7 @@ const router = express.Router();
 const List = require("../models/List");
 const Todo = require("../models/Todo");
 const { isAuth } = require("../controllers/AuthController");
-const { getAllLists, createNewList, addTodo, deleteTodo, deleteItemInTodo, addItem,addItemInTodo, deleteItem, markDoneInTodo } = require("../controllers/ListController");
+const { getAllLists, createNewList, addTodo, deleteTodo, deleteItemInTodo, addItem,addItemInTodo, deleteItem, markDone, markDoneInTodo } = require("../controllers/ListController");
 
 // Get All the Lists
 router.get("/", isAuth, getAllLists );
@@ -17,14 +17,19 @@ router.post("/:listId", isAuth, addTodo );
 
 // Delete a single Todo from a given list
 // This is an Atomic Operation
-router.delete(":listId/todo/:todoId", isAuth, deleteTodo );
+router.delete("/:listId/todo/:todoId", isAuth, deleteTodo );
 
 
 //Add a checklist item
 // This is an Atomic operation
-router.post("/:listId/todo/", isAuth, addItem );
+router.post("/checklist/:listId", isAuth, addItem );
 
 router.post("/:listId/todo/:todoId", isAuth, addItemInTodo );
+
+//Change a checklist item state to done
+// This is an Atomic operation
+router.put("/:listId/item/:itemId", isAuth, markDone );
+
 
 //Change a checklist item state to done
 // This is an Atomic operation
