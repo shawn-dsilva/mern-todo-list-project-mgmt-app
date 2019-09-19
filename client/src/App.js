@@ -1,6 +1,8 @@
 import React , { Component } from 'react';
 import HomePage from './components/HomePage';
 import Profile from './components/Profile';
+import ListPage from './components/ListPage';
+
 import { Route, Switch} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -15,6 +17,8 @@ class App extends Component {
       <Provider store={store}>
             <Switch>
               <Route exact path ="/profile" component={Profile}/>
+              <Route exact path ="/listpage" component={ListPage}/>
+
             </Switch>
         < HomePage/>
       </Provider>

@@ -33,7 +33,7 @@ export class HomePage extends Component {
   render() {
 
     if(this.props.isAuthenticated) {
-      return <Redirect to="/profile" />
+      return <Redirect to="/listpage" />
     }
 
     return (
