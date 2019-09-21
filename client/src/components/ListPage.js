@@ -9,7 +9,7 @@ import {
   ListGroupItem
 } from "reactstrap";
 import { connect } from "react-redux";
-import { getList } from "../actions/listActions";
+import { getList, getSingleList } from "../actions/listActions";
 import PropTypes from "prop-types";
 import Moment from 'react-moment';
 import 'moment-timezone'
@@ -27,15 +27,15 @@ export class ListPage extends Component {
     this.props.getList();
   }
 
-  selectList = () => {
-    this.props.getSingleList()
+  selectList = (id) => {
+    this.props.getSingleList(id)
   }
   displayLists = () => {
     const items = this.props.items;
     const listItems = items.map((item) =>
-      <ListGroupItem key={item._id}>
-      {item.name}
-      { <Moment className="text-right" date={item.date} format="MMM DD YYYY"></Moment>}
+      <ListGroupItem tag="button" key={item._id} action onClick={this.selectList.bind(this, item._id)}>
+      <h3 className=" d-inline float-left">{item.name}</h3>
+      { <h4 className=" d-inline float-right"> <Moment  date={item.date} format="MMM DD YYYY"></Moment></h4>}
       </ListGroupItem>
     );
     return (
@@ -68,4 +68,4 @@ export class ListPage extends Component {
 const mapStateToProps = (state) => ({ //Maps state to redux store as props
   items: state.list.items
 });
-export default connect(mapStateToProps,{ getList })(ListPage);
+export default connect(mapStateToProps,{ getList, getSingleList })(ListPage);

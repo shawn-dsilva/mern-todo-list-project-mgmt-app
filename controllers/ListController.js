@@ -9,6 +9,14 @@ exports.getAllLists = (req, res) => {
     .then((lists) => res.json(lists));
 };
 
+exports.getSingleList = (req, res) => {
+  List.findOne({
+    user: req.session.user.id,
+    _id: req.params.listId
+  })
+    .then((list) => res.json(list));
+};
+
 exports.createNewList = (req, res) => {
   newList = new List({
     name: req.body.name,

@@ -3,11 +3,13 @@ const router = express.Router();
 const List = require("../models/List");
 const Todo = require("../models/Todo");
 const { isAuth } = require("../controllers/AuthController");
-const { getAllLists, createNewList, addTodo, deleteTodo, deleteItemInTodo, addItem,addItemInTodo, deleteItem, markDone, markDoneInTodo, changeStatusTodo } = require("../controllers/ListController");
+const { getAllLists, getSingleList, createNewList, addTodo, deleteTodo, deleteItemInTodo, addItem,addItemInTodo, deleteItem, markDone, markDoneInTodo, changeStatusTodo } = require("../controllers/ListController");
 
 // Get All the Lists
 router.get("/", isAuth, getAllLists );
 
+// Get One Listing by Id
+router.get("/:listId", isAuth, getSingleList );
 // Make a new List
 router.post("/", isAuth, createNewList);
 
