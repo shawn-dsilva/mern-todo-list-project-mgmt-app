@@ -3,7 +3,7 @@ const Todo = require("../models/Todo");
 const Item = require("../models/Item");
 
 exports.getAllLists = (req, res) => {
-  List.find()
+  List.find({ user: req.session.user.id})
     .sort({ date: -1 })
     .populate("user")
     .then((lists) => res.json(lists));

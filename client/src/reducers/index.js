@@ -3,11 +3,13 @@ import { combineReducers} from 'redux';
 import authReducer from './authReducer';
 import uiReducer from './uiReducer';
 import statusReducer from './statusReducer';
+import listReducer from './listReducer';
 
 
 export default combineReducers({
     // error: errorReducer,
     auth: authReducer,
     ui: uiReducer,
-    status: statusReducer
+    status: statusReducer,
+    list: listReducer
 });

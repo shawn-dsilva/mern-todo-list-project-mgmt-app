@@ -4,7 +4,7 @@ import {
 
 
 const initialState = {
-  list:[],
+  items:[],
 };
 
 export default function (state = initialState, action) {
@@ -13,7 +13,7 @@ export default function (state = initialState, action) {
     case GET_LIST:
       return {
         ...state,
-        list: action.payload
+        items: action.payload
       };
 
     default:

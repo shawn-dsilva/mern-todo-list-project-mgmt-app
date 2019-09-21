@@ -17,6 +17,10 @@ body {
   text-align: center;
 }
 
+.align-left {
+  text-align: left;
+}
+
 @media only screen and (max-width: 768px) {
   .main {
     width: 100%;
