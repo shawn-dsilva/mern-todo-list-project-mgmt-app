@@ -6,12 +6,17 @@ import {
 
 const initialState = {
   items:[],
+  currList:{},
 };
 
 export default function (state = initialState, action) {
 
   switch (action.type) {
     case GET_SINGLE_LIST:
+      return {
+        ...state,
+        currList: action.payload
+        };
     case GET_LIST:
       return {
         ...state,

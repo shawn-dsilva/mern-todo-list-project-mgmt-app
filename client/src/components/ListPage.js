@@ -14,13 +14,14 @@ import PropTypes from "prop-types";
 import Moment from 'react-moment';
 import 'moment-timezone'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import SingleList from "./SingleList";
 
 export class ListPage extends Component {
   static propTypes = {
     getList: PropTypes.func.isRequired,
     getSingleList: PropTypes.func.isRequired,
-    items: PropTypes.object.isRequired
+    items: PropTypes.object.isRequired, //TODO: change proptype to array
+    currList: PropTypes.object.isRequired
   };
 
   componentDidMount()  {
@@ -48,6 +49,7 @@ export class ListPage extends Component {
     return (
       <div className="container">
       <div className="main">
+        { Object.keys(this.props.currList).length === 0 ? (
         <Card>
           <CardBody>
         <CardTitle><h1>You are on the List Page now</h1></CardTitle>
@@ -58,7 +60,18 @@ export class ListPage extends Component {
         <br/>
       <Button size="lg" onClick={this.onLogout} color="primary">Logout</Button>
           </CardBody>
-        </Card>
+        </Card> ) :
+        (
+        // <Card>
+        //   <CardBody>
+        // <CardTitle><h1>{this.props.currList.name}</h1></CardTitle>
+        // <br/>
+        // <br/>
+        //   </CardBody>
+        // </Card>
+        <SingleList/>
+        )
+        }
       </div>
   </div>
     )
@@ -66,6 +79,7 @@ export class ListPage extends Component {
 }
 
 const mapStateToProps = (state) => ({ //Maps state to redux store as props
-  items: state.list.items
+  items: state.list.items,
+  currList: state.list.currList
 });
 export default connect(mapStateToProps,{ getList, getSingleList })(ListPage);
