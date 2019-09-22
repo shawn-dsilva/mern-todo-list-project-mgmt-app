@@ -5,9 +5,27 @@
 }
 
 .todoStyle {
-  border:red!important;
-  border-width: 2px!important;
-  border-radius: 900px!important;
+  border:solid lightgrey!important;
+  border-width: 1px!important;
+  border-radius: 25px!important;
+  box-shadow: 0 0 3px 3px #e7e7e7;
+  width:65%!important;
+  cursor: pointer;
+  margin: 0 auto!important;
+}
+
+.listStyle {
+  border:solid lightgrey!important;
+  border-width: 1px!important;
+  border-radius: 25px!important;
+  box-shadow: 0 0 3px 3px #e7e7e7;
+  width:100%!important;
+  cursor: pointer;
+  padding: 1.2rem;
+  margin: 0 auto!important;
+}
+.listStyle  h1 {
+  padding-bottom:1.2rem;
 }
 
 /* Mobile first design, Portrait displays under 48em/768px */

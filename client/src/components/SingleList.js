@@ -34,15 +34,15 @@ export class SingleList extends Component {
   render() {
     const currList = this.props.currList;
     return (
-      <Card>
-        <CardBody>
+      <Card className="listStyle">
+        <CardBody >
         <CardTitle><h1>{this.props.currList.name}</h1></CardTitle>
 
           <ListGroup>
             {
               currList.todos.map( (todo) =>
-              <ListGroupItem  key={todo._id}  tag="button">
-                <CardBody className="todoStyle">
+              <ListGroupItem  className="todoStyle" key={todo._id} action>
+                <CardBody >
               <h3 className=" d-inline float-left">{todo.name}</h3>
               <h4 className=" d-inline float-right">
                 <Moment  date={todo.date} format="MMM DD YYYY"></Moment>
