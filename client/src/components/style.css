@@ -4,6 +4,12 @@
   padding-right: 1rem;
 }
 
+.todoStyle {
+  border:red!important;
+  border-width: 2px!important;
+  border-radius: 900px!important;
+}
+
 /* Mobile first design, Portrait displays under 48em/768px */
 .formStyle {
   display: block;

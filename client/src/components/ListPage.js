@@ -15,12 +15,15 @@ import Moment from 'react-moment';
 import 'moment-timezone'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SingleList from "./SingleList";
+import { Redirect } from 'react-router-dom'
+
 
 export class ListPage extends Component {
   static propTypes = {
     getList: PropTypes.func.isRequired,
     getSingleList: PropTypes.func.isRequired,
-    items: PropTypes.object.isRequired, //TODO: change proptype to array
+    authState: PropTypes.object.isRequired,
+    items: PropTypes.array.isRequired, //TODO: change proptype to array
     currList: PropTypes.object.isRequired
   };
 
@@ -31,6 +34,7 @@ export class ListPage extends Component {
   selectList = (id) => {
     this.props.getSingleList(id)
   }
+
   displayLists = () => {
     const items = this.props.items;
     const listItems = items.map((item) =>
@@ -46,6 +50,11 @@ export class ListPage extends Component {
 
 
   render() {
+
+    if(!this.props.authState.isAuthenticated) {
+      return <Redirect to="/" />
+    }
+
     return (
       <div className="container">
       <div className="main">
@@ -80,6 +89,8 @@ export class ListPage extends Component {
 
 const mapStateToProps = (state) => ({ //Maps state to redux store as props
   items: state.list.items,
-  currList: state.list.currList
+  currList: state.list.currList,
+  authState: state.auth
+
 });
 export default connect(mapStateToProps,{ getList, getSingleList })(ListPage);
