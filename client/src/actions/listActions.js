@@ -40,7 +40,7 @@ export const deleteOneList = (id) => (dispatch) => {
     .then((res) =>
       dispatch({
         type: DELETE_LIST,
-        payload: res.data
+        payload: id
       })
     )
 };

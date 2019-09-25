@@ -43,11 +43,13 @@ export class ListPage extends Component {
   }
 
 
-  selectList = (id) => {
+  selectList = (id, event) => {
+    event.stopPropagation();
     this.props.getSingleList(id)
   }
 
-  onDelete = ( id ) => {
+  onDelete = ( id, event ) => {
+    event.stopPropagation();
     this.props.deleteOneList(id);
   }
 
