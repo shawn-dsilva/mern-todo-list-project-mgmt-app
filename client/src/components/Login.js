@@ -77,7 +77,7 @@ onSubmit = (e) => {
     return (
       <div className={className}>
 
-            <Card>
+            <Card className="listStyle">
                 <CardBody >
                   <CardTitle> <h2><strong>Login</strong></h2></CardTitle>
                 <CardSubtitle className="text-muted">Don't have an account?

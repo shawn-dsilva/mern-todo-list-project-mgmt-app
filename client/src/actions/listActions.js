@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_LIST, GET_SINGLE_LIST} from './types'
+import { GET_LIST, GET_SINGLE_LIST, CREATE_LIST } from './types'
 
 export const getList = () => (dispatch) => {
   axios
@@ -7,6 +7,17 @@ export const getList = () => (dispatch) => {
     .then((res) =>
       dispatch({
         type: GET_LIST,
+        payload: res.data
+      })
+    )
+};
+
+export const createNewList = (name) => (dispatch) => {
+  axios
+    .post("/api/lists", { name: name }, { withCredentials:true })
+    .then((res) =>
+      dispatch({
+        type: CREATE_LIST,
         payload: res.data
       })
     )

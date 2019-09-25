@@ -96,7 +96,7 @@ class Register extends Component {
     }
     return (
       <div className={className}>
-        <Card>
+        <Card className="listStyle">
           <CardBody>
             <CardTitle>
               <h2>

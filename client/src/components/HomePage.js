@@ -14,9 +14,7 @@ import { isAuth } from '../actions/authActions'
 import {Redirect} from 'react-router-dom'
 
 
-var divStyle = {
-color:'white'
-};
+
 
 export class HomePage extends Component {
 
@@ -39,10 +37,10 @@ export class HomePage extends Component {
     return (
        <div className="container">
         <div className="main">
-          <h1 style={divStyle}> <strong>MERN</strong> Sessions Auth App </h1>
+          <h1> <strong>MERN</strong> Sessions Auth App </h1>
           <br/>
-            <h5 style={divStyle}>Minimalistic Sessions based Authentication app <span role="img" aria-label="lock">🔒 </span><br></br>Built with React + Redux, NodeJS, Express, MongoDB and Bootstrap</h5>
-            <h5 style={divStyle}>Uses Cookies <span role="img" aria-label="lock">🍪 </span></h5>
+            <h5>Minimalistic Sessions based Authentication app <span role="img" aria-label="lock">🔒 </span><br></br>Built with React + Redux, NodeJS, Express, MongoDB and Bootstrap</h5>
+            <h5>Uses Cookies <span role="img" aria-label="lock">🍪 </span></h5>
           <br/>
           <div>
 

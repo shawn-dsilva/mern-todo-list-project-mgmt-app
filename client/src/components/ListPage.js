@@ -6,10 +6,13 @@ import {
   CardSubtitle,
   CardBody,
   ListGroup,
-  ListGroupItem
+  ListGroupItem,
+  Form,
+  FormGroup,
+  Input,
 } from "reactstrap";
 import { connect } from "react-redux";
-import { getList, getSingleList } from "../actions/listActions";
+import { getList, getSingleList, createNewList } from "../actions/listActions";
 import PropTypes from "prop-types";
 import Moment from 'react-moment';
 import 'moment-timezone'
@@ -19,17 +22,24 @@ import { Redirect } from 'react-router-dom'
 
 
 export class ListPage extends Component {
+
+  state = {
+    listName: '',
+  }
+
   static propTypes = {
     getList: PropTypes.func.isRequired,
     getSingleList: PropTypes.func.isRequired,
     authState: PropTypes.object.isRequired,
     items: PropTypes.array.isRequired, //TODO: change proptype to array
-    currList: PropTypes.object.isRequired
+    currList: PropTypes.object.isRequired,
+    createNewList: PropTypes.func.isRequired,
   };
 
   componentDidMount()  {
     this.props.getList();
   }
+
 
   selectList = (id) => {
     this.props.getSingleList(id)
@@ -48,6 +58,18 @@ export class ListPage extends Component {
     );
   }
 
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+
+    const {listName} = this.state;
+
+    // Attempt to register
+    this.props.createNewList(listName);
+  };
 
   render() {
 
@@ -67,7 +89,19 @@ export class ListPage extends Component {
         <br/>
         {this.displayLists()}
         <br/>
-      <Button size="lg" onClick={this.onLogout} color="primary">Logout</Button>
+        <Form onSubmit={this.onSubmit}>
+              <FormGroup>
+                <Input
+                  type='text'
+                  name='listName'
+                  id='listNname'
+                  placeholder='Name'
+                  className='mb-3'
+                  onChange={this.onChange}
+                />
+      <Button size="lg" color="primary"> + Create A New List</Button>
+              </FormGroup>
+            </Form>
           </CardBody>
         </Card> ) :
         (
@@ -93,4 +127,4 @@ const mapStateToProps = (state) => ({ //Maps state to redux store as props
   authState: state.auth
 
 });
-export default connect(mapStateToProps,{ getList, getSingleList })(ListPage);
+export default connect(mapStateToProps,{ getList, getSingleList, createNewList })(ListPage);
