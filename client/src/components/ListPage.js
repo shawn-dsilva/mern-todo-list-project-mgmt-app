@@ -19,8 +19,8 @@ import 'moment-timezone'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SingleList from "./SingleList";
 import { Redirect } from 'react-router-dom'
-import { stat } from 'fs';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 export class ListPage extends Component {
 
@@ -56,10 +56,12 @@ export class ListPage extends Component {
   displayLists = () => {
     const items = this.props.items;
     const listItems = items.map((item) =>
-      <ListGroupItem tag="button" key={item._id} action onClick={this.selectList.bind(this, item._id)}>
-      <h3 className=" d-inline float-left">{item.name}</h3>
-      { <h4 className=" d-inline"> <Moment  date={item.date} format="MMM DD YYYY"></Moment></h4>}
-      <Button className="remove-btn float-right" color="danger" size="sm" onClick={this.onDelete.bind(this, item._id)}> &times; </Button>
+      <ListGroupItem className="d-flex flex-row align-items-center justify-content-between" tag="button" key={item._id} action onClick={this.selectList.bind(this, item._id)}>
+      <h3 className=" font-weight-bold mb-0 d-inline float-left">{item.name}</h3>
+      { <span>
+        <Moment  date={item.date} format="MMM DD YYYY"></Moment>
+        </span>}
+      <Button className="float-right" color="danger" size="md" onClick={this.onDelete.bind(this, item._id)}> <FontAwesomeIcon icon={faTrashAlt} /></Button>
       </ListGroupItem>
     );
     return (
@@ -89,9 +91,9 @@ export class ListPage extends Component {
       <div className="container">
       <div className="main">
         { Object.keys(this.props.currList).length === 0 ? (
-        <Card>
+        <Card className="listHomeStyle">
           <CardBody>
-        <CardTitle><h1>You are on the List Page now</h1></CardTitle>
+        <CardTitle><h1 className="font-weight-bold">List Home</h1></CardTitle>
         <br/>
          <CardSubtitle><h5>Select a list or  create a new list to get started </h5></CardSubtitle>
         <br/>
@@ -105,9 +107,10 @@ export class ListPage extends Component {
                   id='listNname'
                   placeholder='Name'
                   className='mb-3'
+                  size='lg'
                   onChange={this.onChange}
                 />
-      <Button size="lg" color="primary"> + Create A New List</Button>
+      <Button size="lg" color="primary"> <FontAwesomeIcon icon={faPlus} /> &nbsp; Create A New List</Button>
               </FormGroup>
             </Form>
           </CardBody>
