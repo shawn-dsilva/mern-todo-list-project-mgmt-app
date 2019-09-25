@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_LIST, GET_SINGLE_LIST, CREATE_LIST } from './types'
+import { GET_LIST, GET_SINGLE_LIST, CREATE_LIST, DELETE_LIST } from './types'
 
 export const getList = () => (dispatch) => {
   axios
@@ -29,6 +29,17 @@ export const getSingleList = (id) => (dispatch) => {
     .then((res) =>
       dispatch({
         type: GET_SINGLE_LIST,
+        payload: res.data
+      })
+    )
+};
+
+export const deleteOneList = (id) => (dispatch) => {
+  axios
+    .delete("/api/lists/" + id, { withCredentials:true })
+    .then((res) =>
+      dispatch({
+        type: DELETE_LIST,
         payload: res.data
       })
     )

@@ -1,12 +1,15 @@
 import {
   GET_LIST,
-  GET_SINGLE_LIST
+  GET_SINGLE_LIST,
+  CREATE_LIST,
+  DELETE_LIST
 } from "../actions/types";
 
 
 const initialState = {
   items:[],
   currList:{},
+  newList:{},
 };
 
 export default function (state = initialState, action) {
@@ -23,6 +26,16 @@ export default function (state = initialState, action) {
         items: action.payload
       };
 
+    case CREATE_LIST:
+        return {
+          ...state,
+          items: [...state.items, action.payload ]
+        };
+    case DELETE_LIST:
+        return {
+          ...state,
+          items: state.items.filter(item => item._id !== action.payload)
+        };
     default:
         return state;
   }

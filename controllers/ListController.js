@@ -25,6 +25,16 @@ exports.createNewList = (req, res) => {
   newList.save().then((list) => res.json(list));
 };
 
+
+exports.deleteOneList = (req, res) => {
+  List.findOneAndDelete({
+    user: req.session.user.id,
+    _id: req.params.listId
+  })
+    .then((list) => res.json(list));
+};
+
+
 exports.addTodo = (req, res) => {
   newTodo = new Todo({
     name: req.body.name

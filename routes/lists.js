@@ -3,7 +3,7 @@ const router = express.Router();
 const List = require("../models/List");
 const Todo = require("../models/Todo");
 const { isAuth } = require("../controllers/AuthController");
-const { getAllLists, getSingleList, createNewList, addTodo, deleteTodo, deleteItemInTodo, addItem,addItemInTodo, deleteItem, markDone, markDoneInTodo, changeStatusTodo } = require("../controllers/ListController");
+const { getAllLists, getSingleList, createNewList, deleteOneList, addTodo, deleteTodo, deleteItemInTodo, addItem,addItemInTodo, deleteItem, markDone, markDoneInTodo, changeStatusTodo } = require("../controllers/ListController");
 
 // Get All the Lists
 router.get("/", isAuth, getAllLists );
@@ -12,6 +12,9 @@ router.get("/", isAuth, getAllLists );
 router.get("/:listId", isAuth, getSingleList );
 // Make a new List
 router.post("/", isAuth, createNewList);
+
+router.delete("/:listId", isAuth, deleteOneList );
+
 
 // Add a new ToDo to the list
 // This is an Atomic Operation

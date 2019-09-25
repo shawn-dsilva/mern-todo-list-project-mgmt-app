@@ -13,3 +13,4 @@ export const AUTH_FAIL = 'AUTH_FAIL';
 export const GET_LIST = 'GET_LIST';
 export const GET_SINGLE_LIST = 'GET_SINGLE_LIST';
 export const CREATE_LIST = 'CREATE_LIST';
+export const DELETE_LIST = 'DELETE_LIST';

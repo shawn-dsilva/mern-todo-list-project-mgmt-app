@@ -12,13 +12,14 @@ import {
   Input,
 } from "reactstrap";
 import { connect } from "react-redux";
-import { getList, getSingleList, createNewList } from "../actions/listActions";
+import { getList, getSingleList, createNewList, deleteOneList } from "../actions/listActions";
 import PropTypes from "prop-types";
 import Moment from 'react-moment';
 import 'moment-timezone'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SingleList from "./SingleList";
 import { Redirect } from 'react-router-dom'
+import { stat } from 'fs';
 
 
 export class ListPage extends Component {
@@ -30,8 +31,9 @@ export class ListPage extends Component {
   static propTypes = {
     getList: PropTypes.func.isRequired,
     getSingleList: PropTypes.func.isRequired,
+    deleteOneList: PropTypes.func.isRequired,
     authState: PropTypes.object.isRequired,
-    items: PropTypes.array.isRequired, //TODO: change proptype to array
+    items: PropTypes.array.isRequired,
     currList: PropTypes.object.isRequired,
     createNewList: PropTypes.func.isRequired,
   };
@@ -45,12 +47,17 @@ export class ListPage extends Component {
     this.props.getSingleList(id)
   }
 
+  onDelete = ( id ) => {
+    this.props.deleteOneList(id);
+  }
+
   displayLists = () => {
     const items = this.props.items;
     const listItems = items.map((item) =>
       <ListGroupItem tag="button" key={item._id} action onClick={this.selectList.bind(this, item._id)}>
       <h3 className=" d-inline float-left">{item.name}</h3>
-      { <h4 className=" d-inline float-right"> <Moment  date={item.date} format="MMM DD YYYY"></Moment></h4>}
+      { <h4 className=" d-inline"> <Moment  date={item.date} format="MMM DD YYYY"></Moment></h4>}
+      <Button className="remove-btn float-right" color="danger" size="sm" onClick={this.onDelete.bind(this, item._id)}> &times; </Button>
       </ListGroupItem>
     );
     return (
@@ -67,7 +74,6 @@ export class ListPage extends Component {
 
     const {listName} = this.state;
 
-    // Attempt to register
     this.props.createNewList(listName);
   };
 
@@ -127,4 +133,4 @@ const mapStateToProps = (state) => ({ //Maps state to redux store as props
   authState: state.auth
 
 });
-export default connect(mapStateToProps,{ getList, getSingleList, createNewList })(ListPage);
+export default connect(mapStateToProps,{ getList, getSingleList, createNewList, deleteOneList })(ListPage);
