@@ -5,18 +5,26 @@ import {
   CardSubtitle,
   CardBody,
   ListGroup,
-  ListGroupItem
+  ListGroupItem,
+  Form,
+  FormGroup,
+  Input,
+  Button
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Moment from 'react-moment';
 import 'moment-timezone'
+import { createNewTodo } from "../actions/listActions";
 import './style.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 export class SingleList extends Component {
 
   static propTypes = {
-    currList: PropTypes.object.isRequired
+    currList: PropTypes.object.isRequired,
+    createNewTodo: PropTypes.func.isRequired,
   };
 
   statusRender = (status) => {
@@ -30,11 +38,22 @@ export class SingleList extends Component {
     }
   }
 
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+
+    const {listName} = this.state;
+
+    this.props.createNewTodo(listName);
+  };
 
   render() {
     const currList = this.props.currList;
     return (
-      <Card className="listStyle">
+      <Card className=" w-75 listStyle">
         <CardBody >
         <CardTitle><h1>{this.props.currList.name}</h1></CardTitle>
 
@@ -63,6 +82,22 @@ export class SingleList extends Component {
               )
             }
           </ListGroup>
+          <CardSubtitle><h5>Select a todo or  create a new todo to get started </h5></CardSubtitle>
+            <br/>
+          <Form onSubmit={this.onSubmit}>
+              <FormGroup>
+                <Input
+                  type='text'
+                  name='listName'
+                  id='listNname'
+                  placeholder='Name'
+                  className='w-75 mx-auto mb-4'
+                  size='lg'
+                  onChange={this.onChange}
+                />
+      <Button className="w-75" size="lg" color="primary"> <FontAwesomeIcon icon={faPlus} /> &nbsp; Add a New ToDo </Button>
+              </FormGroup>
+            </Form>
         </CardBody>
       </Card>
     )
@@ -73,4 +108,4 @@ export class SingleList extends Component {
 const mapStateToProps = (state) => ({ //Maps state to redux store as props
   currList: state.list.currList
 });
-export default connect(mapStateToProps)(SingleList);
+export default connect(mapStateToProps, { createNewTodo })(SingleList);
