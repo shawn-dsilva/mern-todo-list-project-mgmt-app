@@ -1,5 +1,6 @@
-body {
-  height: 100%;
+html, body, #root {
+  min-height: 100%!important;
+  height: 100%!important;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -7,14 +8,11 @@ body {
   color: #343a40;
 }
 
-.main {
-  position: absolute;
-  width: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #343a40;
-  margin: auto;
+.container {
+  min-height: 100%!important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 

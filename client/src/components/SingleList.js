@@ -56,13 +56,14 @@ export class SingleList extends Component {
       <Card className=" w-75 listStyle">
         <CardBody >
         <CardTitle><h1>{this.props.currList.name}</h1></CardTitle>
-
+        <CardSubtitle><h5>Select a todo or  create a new todo to get started </h5></CardSubtitle>
+            <br/>
           <ListGroup>
           <br/>
             <br/>
             {
               currList.todos.map( (todo) =>
-              <ListGroupItem  className="todoStyle" key={todo._id} action>
+              <ListGroupItem  className="my-3 todoStyle" key={todo._id} action>
                 <CardBody >
               <h3 className=" d-inline float-left">{todo.name}</h3>
               <h4 className=" d-inline float-right">
@@ -87,8 +88,7 @@ export class SingleList extends Component {
             <br/>
             <br/>
           </ListGroup>
-          <CardSubtitle><h5>Select a todo or  create a new todo to get started </h5></CardSubtitle>
-            <br/>
+
           <Form onSubmit={this.onSubmit}>
               <FormGroup>
                 <Input

@@ -40,7 +40,7 @@ export default function (state = initialState, action) {
     case CREATE_TODO:
         return {
           ...state,
-          currList: { todos: [...state.currList.todos, action.payload.todos[3] ] }
+          currList: { todos: [...state.currList.todos, action.payload ] }
         };
     default:
         return state;

@@ -45,7 +45,7 @@ exports.addTodo = (req, res) => {
       $push: { todos: newTodo } // Adds new ToDo to todos array
     },
     { new: true } // This option returns the modified document, not the original one
-  ).then((list) => res.json(list));
+  ).then((list) => res.json(list.todos[list.todos.length-1]));
 };
 
 exports.changeStatusTodo = (req, res) => {

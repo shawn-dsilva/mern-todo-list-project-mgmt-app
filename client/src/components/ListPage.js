@@ -89,7 +89,7 @@ export class ListPage extends Component {
 
     return (
       <div className="container">
-      <div className="main">
+      <div className="w-75">
         { Object.keys(this.props.currList).length === 0 ? (
         <Card className="listHomeStyle">
           <CardBody>
