@@ -2,7 +2,8 @@ import {
   GET_LIST,
   GET_SINGLE_LIST,
   CREATE_LIST,
-  DELETE_LIST
+  DELETE_LIST,
+  CREATE_TODO
 } from "../actions/types";
 
 
@@ -35,6 +36,11 @@ export default function (state = initialState, action) {
         return {
           ...state,
           items: state.items.filter(item => item._id !== action.payload)
+        };
+    case CREATE_TODO:
+        return {
+          ...state,
+          currList: { todos: [...state.currList.todos, action.payload.todos[3] ] }
         };
     default:
         return state;

@@ -43,11 +43,11 @@ export class SingleList extends Component {
   };
 
   onSubmit = e => {
+    const currList = this.props.currList;
     e.preventDefault();
-
     const {listName} = this.state;
 
-    this.props.createNewTodo(listName);
+    this.props.createNewTodo(currList._id, listName);
   };
 
   render() {
@@ -58,6 +58,8 @@ export class SingleList extends Component {
         <CardTitle><h1>{this.props.currList.name}</h1></CardTitle>
 
           <ListGroup>
+          <br/>
+            <br/>
             {
               currList.todos.map( (todo) =>
               <ListGroupItem  className="todoStyle" key={todo._id} action>
@@ -79,8 +81,11 @@ export class SingleList extends Component {
               </p>
               </CardBody>
               </ListGroupItem>
+
               )
             }
+            <br/>
+            <br/>
           </ListGroup>
           <CardSubtitle><h5>Select a todo or  create a new todo to get started </h5></CardSubtitle>
             <br/>
