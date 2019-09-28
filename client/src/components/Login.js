@@ -98,6 +98,7 @@ onSubmit = (e) => {
                       placeholder="you@youremail.com"
                       className="mb-3"
                       onChange={this.onChange}
+                      autoComplete="off"
                     />
 
                     <Label for="password">Password</Label>
@@ -108,6 +109,7 @@ onSubmit = (e) => {
                       placeholder="Enter your Password"
                       className="mb-3"
                       onChange={this.onChange}
+                      autoComplete="off"
                     />
                     <Button color="dark" style={{ marginTop: "2rem" }} block>
                       Login

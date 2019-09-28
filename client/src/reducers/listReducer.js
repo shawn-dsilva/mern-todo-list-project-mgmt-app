@@ -44,13 +44,21 @@ export default function (state = initialState, action) {
     case CREATE_TODO:
         return {
           ...state,
-          currList: { todos: [...state.currList.todos, action.payload ] }
+          currList: {
+            ...state.currList,
+            todos: [...state.currList.todos, action.payload ]
+          }
         };
 
     case DELETE_TODO:
         return {
           ...state,
-          currList: state.currList.todos.filter(todo => todo._id !== action.payload)
+          // NEW OBJECT of currList is being returned.
+          // To preserve properties of currList, current state also has to be added
+          // to new currList object
+          currList: { ...state.currList,
+            todos: state.currList.todos.filter(todo => todo._id !== action.payload)
+          }
         };
 
     default:

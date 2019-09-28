@@ -109,6 +109,8 @@ export class ListPage extends Component {
                   className='mb-3'
                   size='lg'
                   onChange={this.onChange}
+                  autoComplete="off"
+
                 />
       <Button size="lg" color="primary"> <FontAwesomeIcon icon={faPlus} /> &nbsp; Create A New List</Button>
               </FormGroup>

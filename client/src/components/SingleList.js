@@ -102,11 +102,12 @@ export class SingleList extends Component {
                 <Input
                   type='text'
                   name='listName'
-                  id='listNname'
+                  id='listName'
                   placeholder='Name'
                   className='w-75 mx-auto mb-4'
                   size='lg'
                   onChange={this.onChange}
+                  autoComplete="off"
                 />
       <Button className="w-75" size="lg" color="primary"> <FontAwesomeIcon icon={faPlus} /> &nbsp; Add a New ToDo </Button>
               </FormGroup>

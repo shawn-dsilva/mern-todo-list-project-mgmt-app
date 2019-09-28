@@ -119,6 +119,8 @@ class Register extends Component {
                   placeholder="Enter your Username"
                   className="mb-3"
                   onChange={this.onChange}
+                  autoComplete="off"
+
                 />
 
                 <Label for="email">E-mail</Label>
@@ -129,6 +131,8 @@ class Register extends Component {
                   placeholder="you@youremail.com"
                   className="mb-3"
                   onChange={this.onChange}
+                  autoComplete="off"
+
                 />
 
                 <Label for="password">Password</Label>
@@ -139,6 +143,8 @@ class Register extends Component {
                   placeholder="Enter your Password"
                   className="mb-3"
                   onChange={this.onChange}
+                  autoComplete="off"
+
                 />
                 <Button color="dark" style={{ marginTop: "2rem" }} block>
                   Register
