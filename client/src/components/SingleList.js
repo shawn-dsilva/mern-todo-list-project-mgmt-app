@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Moment from 'react-moment';
 import 'moment-timezone'
-import { createNewTodo } from "../actions/listActions";
+import { createNewTodo, deleteOneTodo } from "../actions/listActions";
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -25,6 +25,7 @@ export class SingleList extends Component {
   static propTypes = {
     currList: PropTypes.object.isRequired,
     createNewTodo: PropTypes.func.isRequired,
+    deleteOneTodo: PropTypes.func.isRequired,
   };
 
   statusRender = (status) => {
@@ -36,6 +37,11 @@ export class SingleList extends Component {
     case 'NotStarted':
       return <span className="text-left badge badge-pill badge-danger">{status}</span>
     }
+  }
+
+  onDelete = ( listId, todoId, event ) => {
+    event.stopPropagation();
+    this.props.deleteOneTodo(listId, todoId);
   }
 
   onChange = e => {
@@ -66,9 +72,11 @@ export class SingleList extends Component {
               <ListGroupItem  className="my-3 todoStyle" key={todo._id} action>
                 <CardBody >
               <h3 className=" d-inline float-left">{todo.name}</h3>
+              <Button className="float-right" color="danger" size="md" onClick={this.onDelete.bind(this, currList._id, todo._id)}> <FontAwesomeIcon icon={faTrashAlt} /></Button>
               <h4 className=" d-inline float-right">
                 <Moment  date={todo.date} format="MMM DD YYYY"></Moment>
               </h4>
+
               <br/>
               <hr/>
               <br/>
@@ -113,4 +121,5 @@ export class SingleList extends Component {
 const mapStateToProps = (state) => ({ //Maps state to redux store as props
   currList: state.list.currList
 });
-export default connect(mapStateToProps, { createNewTodo })(SingleList);
+
+export default connect(mapStateToProps, { createNewTodo, deleteOneTodo })(SingleList);

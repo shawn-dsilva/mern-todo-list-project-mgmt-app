@@ -3,7 +3,8 @@ import {
   GET_SINGLE_LIST,
   CREATE_LIST,
   DELETE_LIST,
-  CREATE_TODO
+  CREATE_TODO,
+  DELETE_TODO
 } from "../actions/types";
 
 
@@ -20,7 +21,8 @@ export default function (state = initialState, action) {
       return {
         ...state,
         currList: action.payload
-        };
+      };
+
     case GET_LIST:
       return {
         ...state,
@@ -32,16 +34,25 @@ export default function (state = initialState, action) {
           ...state,
           items: [...state.items, action.payload ]
         };
+
     case DELETE_LIST:
         return {
           ...state,
           items: state.items.filter(item => item._id !== action.payload)
         };
+
     case CREATE_TODO:
         return {
           ...state,
           currList: { todos: [...state.currList.todos, action.payload ] }
         };
+
+    case DELETE_TODO:
+        return {
+          ...state,
+          currList: state.currList.todos.filter(todo => todo._id !== action.payload)
+        };
+
     default:
         return state;
   }
