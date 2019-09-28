@@ -95,7 +95,7 @@ export class ListPage extends Component {
           <CardBody>
         <CardTitle><h1 className="font-weight-bold">List Home</h1></CardTitle>
         <br/>
-         <CardSubtitle><h5>Select a list or  create a new list to get started </h5></CardSubtitle>
+         <CardSubtitle><h5 className="text-muted">Select a list or  create a new list to get started </h5></CardSubtitle>
         <br/>
         {this.displayLists()}
         <br/>

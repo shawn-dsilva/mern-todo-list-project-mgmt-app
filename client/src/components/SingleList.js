@@ -31,11 +31,14 @@ export class SingleList extends Component {
   statusRender = (status) => {
     switch(status){
     case 'Done':
-      return <span className="text-left badge badge-pill badge-success">{status}</span>
+      status = 'Done';
+      return <h5 className="mb-0 d-inline"><span className="text-left badge badge-pill badge-success">{status}</span></h5>
     case 'InProgress':
-      return <span className="text-left badge badge-pill badge-warning">{status}</span>
+        status = 'In Progress';
+      return <h5 className="mb-0 d-inline"><span className="text-left badge badge-pill badge-warning">{status}</span></h5>
     case 'NotStarted':
-      return <span className="text-left badge badge-pill badge-danger">{status}</span>
+        status = 'Not Started';
+      return <h5 className="mb-0 d-inline"><span className="text-left badge badge-pill badge-danger">{status}</span></h5>
     }
   }
 
@@ -62,24 +65,24 @@ export class SingleList extends Component {
       <Card className=" w-75 listStyle">
         <CardBody >
         <CardTitle><h1>{this.props.currList.name}</h1></CardTitle>
-        <CardSubtitle><h5>Select a todo or  create a new todo to get started </h5></CardSubtitle>
+        <CardSubtitle><h5 className="text-muted">Select a todo or  create a new todo to get started </h5></CardSubtitle>
             <br/>
           <ListGroup>
           <br/>
             <br/>
             {
               currList.todos.map( (todo) =>
-              <ListGroupItem  className="my-3 todoStyle" key={todo._id} action>
-                <CardBody >
-              <h3 className=" d-inline float-left">{todo.name}</h3>
+              <ListGroupItem  className=" todoStyle d-flex flex-row align-items-center justify-content-between" key={todo._id} action>
+              <CardBody className="px-3" >
+              <h2 className=" font-weight-bold mb-0 d-inline float-left">{todo.name}</h2>
+              <span className="text-muted float-right d-flex flex-row  align-items-center justify-content-between">
+                <Moment  className="pr-3" date={todo.date} format="MMM DD YYYY"></Moment>
               <Button className="float-right" color="danger" size="md" onClick={this.onDelete.bind(this, currList._id, todo._id)}> <FontAwesomeIcon icon={faTrashAlt} /></Button>
-              <h4 className=" d-inline float-right">
-                <Moment  date={todo.date} format="MMM DD YYYY"></Moment>
-              </h4>
+              </span>
+              <br/>
+              <br/>
+              <hr></hr>
 
-              <br/>
-              <hr/>
-              <br/>
               <p className ="text-left font-weight-bold">Description:</p>
               { !todo.description ? <p className="text-left">No Description Given.</p> : <p className="text-left">todo.description</p> }
               <br/>

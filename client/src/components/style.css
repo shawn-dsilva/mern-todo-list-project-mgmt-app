@@ -7,11 +7,12 @@
 .todoStyle {
   border:solid lightgrey!important;
   border-width: 1px!important;
-  border-radius: 25px!important;
+  border-radius: 10px!important;
   box-shadow: 0 0 3px 3px #e7e7e7;
-  width:65%!important;
+  width:95%!important;
   cursor: pointer;
   margin: 0 auto!important;
+  padding: 0;
 }
 
 .listStyle {
