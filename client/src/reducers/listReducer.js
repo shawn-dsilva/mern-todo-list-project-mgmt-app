@@ -4,7 +4,8 @@ import {
   CREATE_LIST,
   DELETE_LIST,
   CREATE_TODO,
-  DELETE_TODO
+  DELETE_TODO,
+  GET_TODO
 } from "../actions/types";
 
 
@@ -12,6 +13,7 @@ const initialState = {
   items:[],
   currList:{},
   newList:{},
+  currTodo: {},
 };
 
 export default function (state = initialState, action) {
@@ -49,6 +51,12 @@ export default function (state = initialState, action) {
             todos: [...state.currList.todos, action.payload ]
           }
         };
+
+    case GET_TODO:
+      return {
+        ...state,
+        currTodo: action.payload
+      };
 
     case DELETE_TODO:
         return {
