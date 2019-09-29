@@ -57,7 +57,7 @@ export const createNewTodo = (listId, name) => (dispatch) => {
     )
 };
 
-export const getOneTodo = () => (dispatch) => {
+export const getOneTodo = (listId, todoId) => (dispatch) => {
   axios
     .get("/api/lists/" + listId + "/todo/" + todoId, { withCredentials:true })
     .then((res) =>

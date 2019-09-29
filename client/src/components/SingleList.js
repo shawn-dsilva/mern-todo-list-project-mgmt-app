@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Moment from 'react-moment';
 import 'moment-timezone'
-import { createNewTodo, deleteOneTodo } from "../actions/listActions";
+import { createNewTodo, deleteOneTodo, getOneTodo } from "../actions/listActions";
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -27,6 +27,7 @@ export class SingleList extends Component {
 
   static propTypes = {
     currList: PropTypes.object.isRequired,
+    currTodo: PropTypes.object.isRequired,
     createNewTodo: PropTypes.func.isRequired,
     deleteOneTodo: PropTypes.func.isRequired,
   };
@@ -48,6 +49,14 @@ export class SingleList extends Component {
   onDelete = ( listId, todoId, event ) => {
     event.stopPropagation();
     this.props.deleteOneTodo(listId, todoId);
+  }
+
+  todoModal = ( listId, todoId, event ) => {
+    event.stopPropagation();
+     if (this.props.currTodo._id !== todoId ) {
+      this.props.getOneTodo(listId, todoId);
+     }
+    this.toggle();
   }
 
   onChange = e => {
@@ -81,7 +90,7 @@ export class SingleList extends Component {
             <br/>
             {
               currList.todos.map( (todo) =>
-              <ListGroupItem  className=" todoStyle d-flex flex-row align-items-center justify-content-between" key={todo._id} onClick={this.toggle} action>
+              <ListGroupItem  className=" todoStyle d-flex flex-row align-items-center justify-content-between" key={todo._id} onClick={this.todoModal.bind(this, currList._id, todo._id)} action>
               <CardBody className="px-3" >
               <h2 className=" font-weight-bold mb-0 d-inline float-left">{todo.name}</h2>
               <span className="text-muted float-right d-flex flex-row  align-items-center justify-content-between">
@@ -109,7 +118,7 @@ export class SingleList extends Component {
             <br/>
           </ListGroup>
 
-          <TodoModal modal={this.state.isOpen} toggle={this.toggle} todo={this.props.currList.todos[0]}></TodoModal>
+          <TodoModal modal={this.state.isOpen} toggle={this.toggle} todo={this.props.currTodo}></TodoModal>
 
           <Form onSubmit={this.onSubmit}>
               <FormGroup>
@@ -134,7 +143,8 @@ export class SingleList extends Component {
 
 
 const mapStateToProps = (state) => ({ //Maps state to redux store as props
-  currList: state.list.currList
+  currList: state.list.currList,
+  currTodo: state.list.currTodo,
 });
 
-export default connect(mapStateToProps, { createNewTodo, deleteOneTodo })(SingleList);
+export default connect(mapStateToProps, { createNewTodo, deleteOneTodo, getOneTodo })(SingleList);

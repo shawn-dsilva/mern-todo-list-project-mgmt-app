@@ -17,6 +17,13 @@ exports.getSingleList = (req, res) => {
     .then((list) => res.json(list));
 };
 
+exports.getSingleTodo = (req, res) => {
+  List.findOne({
+    user: req.session.user.id,
+    _id: req.params.listId,
+  })
+    .then((list) => res.json(list.todos.id(req.params.todoId)));
+};
 exports.createNewList = (req, res) => {
   newList = new List({
     name: req.body.name,
