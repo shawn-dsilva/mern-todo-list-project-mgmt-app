@@ -17,10 +17,13 @@ import Moment from 'react-moment';
 import 'moment-timezone'
 import { createNewTodo, deleteOneTodo } from "../actions/listActions";
 import './style.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+import TodoModal from './TodoModal';
 
 export class SingleList extends Component {
+
+  state = { isOpen: false };
 
   static propTypes = {
     currList: PropTypes.object.isRequired,
@@ -59,6 +62,12 @@ export class SingleList extends Component {
     this.props.createNewTodo(currList._id, listName);
   };
 
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
   render() {
     const currList = this.props.currList;
     return (
@@ -72,7 +81,7 @@ export class SingleList extends Component {
             <br/>
             {
               currList.todos.map( (todo) =>
-              <ListGroupItem  className=" todoStyle d-flex flex-row align-items-center justify-content-between" key={todo._id} action>
+              <ListGroupItem  className=" todoStyle d-flex flex-row align-items-center justify-content-between" key={todo._id} onClick={this.toggle} action>
               <CardBody className="px-3" >
               <h2 className=" font-weight-bold mb-0 d-inline float-left">{todo.name}</h2>
               <span className="text-muted float-right d-flex flex-row  align-items-center justify-content-between">
@@ -99,6 +108,8 @@ export class SingleList extends Component {
             <br/>
             <br/>
           </ListGroup>
+
+          <TodoModal modal={this.state.isOpen} toggle={this.toggle} todo={this.props.currList.todos[0]}></TodoModal>
 
           <Form onSubmit={this.onSubmit}>
               <FormGroup>

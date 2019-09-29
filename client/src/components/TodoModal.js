@@ -14,7 +14,7 @@ export class TodoModal extends Component {
   render() {
     return (
       <div>
-        <Modal isOpen={this.props.modal} toggle={this.props.toggle} >
+        <Modal classname="w-100" isOpen={this.props.modal} toggle={this.props.toggle} >
           <ModalHeader toggle={this.props.toggle}>{this.props.todo.name}</ModalHeader>
           <ModalBody>
           {this.props.todo.description}
