@@ -14,14 +14,14 @@ export class TodoModal extends Component {
   render() {
     return (
       <div>
-        <Modal classname="w-100" isOpen={this.props.modal} toggle={this.props.toggle} >
+        <Modal classname="w-100" centered size="lg" isOpen={this.props.modal} toggle={this.props.toggle} >
           <ModalHeader toggle={this.props.toggle}>{this.props.todo.name}</ModalHeader>
           <ModalBody>
           {this.props.todo.description}
           {this.props.todo.status}
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={this.props.toggle}>Close</Button>
+            <Button color="danger" onClick={this.props.toggle}>Close</Button>
           </ModalFooter>
         </Modal>
       </div>
