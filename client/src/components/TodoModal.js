@@ -76,14 +76,15 @@ export class TodoModal extends Component {
   checklistRender = (todo) => {
     const checklist = todo.checklist;
     if (checklist.length > 0) {
-      return checklist.map((item) => 
+      return ( checklist.map((item) => 
         <ListGroupItem className=" my-3 todoStyle d-flex flex-row align-items-center justify-content-between" key={item._id} onClick={""} action>
           <CardBody className="px-3">
             <span className=" font-weight-bold mb-0 d-inline float-left">
               {item.name}
             </span>
           </CardBody>
-        </ListGroupItem>);
+        </ListGroupItem>)
+      );
     } else {
       return (
       <Form onSubmit={this.onSubmit}>
