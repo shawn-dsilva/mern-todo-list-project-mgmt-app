@@ -76,6 +76,7 @@ export class TodoModal extends Component {
 
   ChecklistRender = (todo) => {
 
+    if(Object.keys(todo).length !== 0 ) {
     const checklist = todo.checklist;
     if (checklist.length != 0) {
       return ( checklist.map((item) => 
@@ -107,6 +108,7 @@ export class TodoModal extends Component {
         </FormGroup>
       </Form>)
     }
+  }
   };
 
   render() {
