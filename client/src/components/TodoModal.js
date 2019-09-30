@@ -24,9 +24,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export class TodoModal extends Component {
-  propTypes = {
+  static propTypes = {
     toggle: PropTypes.func.isRequired,
-    modal: PropTypes.bool
+    modal: PropTypes.bool,
+    addNewItem: PropTypes.func.isRequired,
   };
 
   statusRender = (status) => {
@@ -67,17 +68,18 @@ export class TodoModal extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const currList = this.props.currList;
-    const currTodo = this.props.currTodo;
+    const currList = this.props.list;
+    const currTodo = this.props.todo;
     const {itemName} = this.state;
     this.props.addNewItem(currList._id, currTodo._id, itemName);
   };
 
-  checklistRender = (todo) => {
+  ChecklistRender = (todo) => {
+
     const checklist = todo.checklist;
-    if (checklist.length > 0) {
+    if (checklist.length != 0) {
       return ( checklist.map((item) => 
-        <ListGroupItem className=" my-3 todoStyle d-flex flex-row align-items-center justify-content-between" key={item._id} onClick={""} action>
+        <ListGroupItem className=" my-3 todoStyle d-flex flex-row align-items-center justify-content-between" key={item._id} action>
           <CardBody className="px-3">
             <span className=" font-weight-bold mb-0 d-inline float-left">
               {item.name}
@@ -124,7 +126,7 @@ export class TodoModal extends Component {
           <ModalBody className=" m-3">
             <h4 className="text-left font-weight-bold ">
               <FontAwesomeIcon icon={faEdit} /> Description &nbsp;
-              <Button color="info" size="sm" onClick={""}>
+              <Button color="info" size="sm" >
                 Edit
               </Button>
             </h4>
@@ -132,7 +134,7 @@ export class TodoModal extends Component {
             <div className="my-3">
               {!todo.description ? (
                 <p className="pl-4 text-left">
-                  &nbsp; No Description. Click Edit to add a Description{" "}
+                  No Description. Click Edit to add a Description{" "}
                 </p>
               ) : (
                 <p className="text-left">todo.description</p>
@@ -142,15 +144,28 @@ export class TodoModal extends Component {
 
             <h4 className="text-left font-weight-bold ">
               <FontAwesomeIcon icon={faTasks} /> Checklist &nbsp;
-              <Button color="info" size="sm" onClick={""}>
-                Edit
-              </Button>
             </h4>
 
-            <div className="my-3">
-              <br />
-            </div>
-
+            {todo.checklist ? (
+            <div>
+            <p className="ml-4 mt-3">No items in this checklist, Add an item below.</p>
+            <Form onSubmit={this.onSubmit}>
+            <FormGroup>
+               <Input
+                 type="text"
+                 name="itemName"
+                 id="itemName"
+                 placeholder="checklist name"
+                 className="w-50 ml-4 my-4"
+                 onChange={this.onChange}
+                 autoComplete="off"
+                 />
+               <Button className="w-50 ml-4" color="primary">
+             <FontAwesomeIcon icon={faPlus} /> &nbsp; Add Checklist Item </Button>
+             </FormGroup>
+           </Form>
+           </div>): null}
+            
             <p className="text-left font-weight-bold">
               Status: &nbsp;
               {this.statusRender(todo.status)}

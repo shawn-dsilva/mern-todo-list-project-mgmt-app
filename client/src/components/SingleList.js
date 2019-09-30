@@ -118,7 +118,7 @@ export class SingleList extends Component {
             <br/>
           </ListGroup>
 
-          <TodoModal modal={this.state.isOpen} toggle={this.toggle} todo={this.props.currTodo}></TodoModal>
+          <TodoModal modal={this.state.isOpen} toggle={this.toggle} list={this.props.currList} todo={this.props.currTodo} checklist={this.props.currTodo.checklist}></TodoModal>
 
           <Form onSubmit={this.onSubmit}>
               <FormGroup>
