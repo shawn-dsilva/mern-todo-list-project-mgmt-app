@@ -55,7 +55,7 @@ export default function (state = initialState, action) {
     case GET_TODO:
       return {
         ...state,
-        currTodo: action.payload
+        currTodo: action.payload.todos[0]
       };
 
     case DELETE_TODO:

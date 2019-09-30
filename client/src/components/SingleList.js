@@ -90,7 +90,7 @@ export class SingleList extends Component {
             <br/>
             {
               currList.todos.map( (todo) =>
-              <ListGroupItem  className=" todoStyle d-flex flex-row align-items-center justify-content-between" key={todo._id} onClick={this.todoModal.bind(this, currList._id, todo._id)} action>
+              <ListGroupItem  className=" my-3 todoStyle d-flex flex-row align-items-center justify-content-between" key={todo._id} onClick={this.todoModal.bind(this, currList._id, todo._id)} action>
               <CardBody className="px-3" >
               <h2 className=" font-weight-bold mb-0 d-inline float-left">{todo.name}</h2>
               <span className="text-muted float-right d-flex flex-row  align-items-center justify-content-between">
