@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { GET_LIST, GET_SINGLE_LIST, CREATE_LIST,
-  DELETE_LIST, CREATE_TODO, DELETE_TODO, GET_TODO } from './types'
+  DELETE_LIST, CREATE_TODO, DELETE_TODO, GET_TODO,
+CREATE_ITEM } from './types'
 
 export const getList = () => (dispatch) => {
   axios
@@ -75,6 +76,17 @@ export const deleteOneTodo = (listId, todoId) => (dispatch) => {
       dispatch({
         type: DELETE_TODO,
         payload: todoId
+      })
+    )
+};
+
+export const addNewItem = (listId, todoId, name) => (dispatch) => {
+  axios
+    .post("/api/lists/" + listId + '/todo/' + todoId , { name: name }, { withCredentials:true })
+    .then((res) =>
+      dispatch({
+        type: CREATE_ITEM,
+        payload: res.data
       })
     )
 };

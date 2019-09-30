@@ -111,6 +111,7 @@ exports.addItemInTodo = (req,res ) => {
   List.findOneAndUpdate(
     { user: req.session.user.id,
       _id: req.params.listId,
+      'todos._id': req.params.todoId
     },
     {
       $push: { "todos.$[todo].checklist": newItem } // Adds new Item to checklist array
@@ -119,7 +120,7 @@ exports.addItemInTodo = (req,res ) => {
       "arrayFilters": [ { "todo._id" : req.params.todoId }],
       "new": true // This option returns the modified document, not the original one
     }
-  ).then((list) => res.json(list));
+  ).then((todos) => res.json(todos.checklist[todos.checklist.length-1]));
 };
 
 exports.markDone = (req, res) => {

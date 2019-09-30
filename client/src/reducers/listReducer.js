@@ -5,7 +5,8 @@ import {
   DELETE_LIST,
   CREATE_TODO,
   DELETE_TODO,
-  GET_TODO
+  GET_TODO,
+  CREATE_ITEM
 } from "../actions/types";
 
 
@@ -66,6 +67,15 @@ export default function (state = initialState, action) {
           // to new currList object
           currList: { ...state.currList,
             todos: state.currList.todos.filter(todo => todo._id !== action.payload)
+          }
+        };
+
+    case CREATE_ITEM:
+        return {
+          ...state,
+          currTodo: {
+            ...state.currTodo,
+            checklist: [...state.currTodo.checklist, action.payload ]
           }
         };
 

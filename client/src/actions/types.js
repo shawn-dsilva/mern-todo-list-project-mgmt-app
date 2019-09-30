@@ -17,3 +17,7 @@ export const DELETE_LIST = 'DELETE_LIST';
 export const CREATE_TODO = 'CREATE_TODO';
 export const GET_TODO = 'GET_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
+export const ADD_TODO_DESC = 'ADD_TODO_DESC';
+export const CREATE_ITEM = 'CREATE_ITEM';
+export const DELETE_ITEM = 'DELETE ITEM';
+export const STATUS_ITEM = 'STATUS_ITEM';
