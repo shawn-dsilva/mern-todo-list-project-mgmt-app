@@ -10,7 +10,8 @@ import {
   ListGroupItem,
   ListGroup,
   Input,
-  CardBody
+  CardBody,
+  Label
 } from "reactstrap";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -153,8 +154,13 @@ export class TodoModal extends Component {
              { todo.checklist.length > 0 ? (
                todo.checklist.map((item) =>
                <ListGroupItem className=" shadow-sm my-3 ml-4 w-50 d-flex flex-row align-items-center justify-content-between" key={item._id} action>
-                   <span className=" mb-0 d-inline float-left">
-                     {item.name}
+                  <span className=" mb-0 d-inline float-left">
+                    <FormGroup check>
+                      <Label check>
+                        <Input type="checkbox" />
+                            {item.name}
+                        </Label>
+                    </FormGroup>
                    </span>
                </ListGroupItem>)):( <div>
             <p className="ml-4 mt-3">No items in this checklist, Add an item below.</p>
