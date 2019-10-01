@@ -1,6 +1,8 @@
 const List = require("../models/List");
 const Todo = require("../models/Todo");
 const Item = require("../models/Item");
+const mongoose = require('mongoose');
+
 
 exports.getAllLists = (req, res) => {
   List.find({ user: req.session.user.id})
@@ -111,18 +113,45 @@ exports.addItemInTodo = (req,res ) => {
   List.findOneAndUpdate(
     { user: req.session.user.id,
       _id: req.params.listId,
-      'todos._id': req.params.todoId
     },
     {
-      $push: { "todos.$[todo].checklist": newItem } // Adds new Item to checklist array
+      $push: { "todos.$[todo].checklist": newItem },
+      // Adds new Item to checklist array
     },
     {
       "arrayFilters": [ { "todo._id" : req.params.todoId }],
-      "new": true // This option returns the modified document, not the original one
+      "new": true, // This option returns the modified document, not the original one
     }
-  ).then((todos) => res.json(todos.checklist[todos.checklist.length-1]));
+  ).then((list) => {
+    const checklist = list.todos.id(req.params.todoId).checklist;
+    res.json(checklist[checklist.length-1])
+  });
 };
 
+// exports.addItemInTodo = (req,res ) => {
+//   newItem = new Item({
+//     name: req.body.name
+//   });
+
+//   List.findOneAndUpdate(
+//     { user: req.session.user.id,
+//       _id: req.params.listId,
+//       todos: {
+//         '$elemMatch': {
+//           'todos._id':  new mongoose.Types.ObjectId(req.params.todoId),
+//         }
+//       }
+//     },
+//     {
+//       // $push: { "todos.$[todo].checklist": newItem },
+//       // Adds new Item to checklist array
+//     },
+//     {
+//       // "arrayFilters": [ { "todo._id" : req.params.todoId }],
+//       "new": true, // This option returns the modified document, not the original one
+//     }
+//   ).then((todos) => res.json(todos));
+// };
 exports.markDone = (req, res) => {
 
     List.findOneAndUpdate(

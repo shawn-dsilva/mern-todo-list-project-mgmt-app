@@ -15,6 +15,8 @@ import {
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { addNewItem } from "../actions/listActions";
+import { connect } from "react-redux";
+
 
 import {
   faTasks,
@@ -71,7 +73,7 @@ export class TodoModal extends Component {
     const currList = this.props.list;
     const currTodo = this.props.todo;
     const {itemName} = this.state;
-    // this.props.addNewItem(currList._id, currTodo._id, itemName);
+    this.props.addNewItem(currList._id, currTodo._id, itemName);
   };
 
   ChecklistRender = (todo) => {
@@ -149,12 +151,19 @@ export class TodoModal extends Component {
             </h4>
 
             { console.log(todo.checklist.length)}
-             { todo.checklist.length > 0 ?(
-
-             ): (
-            <div>
+             { todo.checklist.length > 0 ? (
+               todo.checklist.map((item) =>
+               <ListGroupItem className=" my-3 todoStyle d-flex flex-row align-items-center justify-content-between" key={item._id} action>
+                 <CardBody className="px-3">
+                   <span className=" font-weight-bold mb-0 d-inline float-left">
+                     {item.name}
+                   </span>
+                 </CardBody>
+               </ListGroupItem>)):( <div>
             <p className="ml-4 mt-3">No items in this checklist, Add an item below.</p>
-            <Form onSubmit={this.onSubmit}>
+           </div>)
+          }
+          <Form onSubmit={this.onSubmit}>
             <FormGroup>
                <Input
                  type="text"
@@ -169,7 +178,6 @@ export class TodoModal extends Component {
              <FontAwesomeIcon icon={faPlus} /> &nbsp; Add Checklist Item </Button>
              </FormGroup>
            </Form>
-           </div>)}
 
             <p className="text-left font-weight-bold">
               Status: &nbsp;
@@ -187,4 +195,4 @@ export class TodoModal extends Component {
   }
 }
 
-export default TodoModal;
+export default connect(null,{addNewItem})(TodoModal);
