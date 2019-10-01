@@ -118,9 +118,9 @@ export class SingleList extends Component {
             <br/>
           </ListGroup>
 
-          {Object.keys(this.props.currTodo).length !== 0  ? (console.log(this.props.currTodo.checklist.length)):null}
+          {Object.keys(this.props.currTodo).length !== 0  ? ( <TodoModal modal={this.state.isOpen} toggle={this.toggle} list={this.props.currList} todo={this.props.currTodo} checklist={this.props.currTodo.checklist}></TodoModal>):null}
 
-          <TodoModal modal={this.state.isOpen} toggle={this.toggle} list={this.props.currList} todo={this.props.currTodo} checklist={this.props.currTodo.checklist}></TodoModal>
+
 
           <Form onSubmit={this.onSubmit}>
               <FormGroup>
