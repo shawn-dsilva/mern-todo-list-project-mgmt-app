@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { addNewItem } from "../actions/listActions";
+import { addNewItem, markDone } from "../actions/listActions";
 import { connect } from "react-redux";
 
 
@@ -75,6 +75,13 @@ export class TodoModal extends Component {
     const currTodo = this.props.todo;
     const {itemName} = this.state;
     this.props.addNewItem(currList._id, currTodo._id, itemName);
+  };
+
+  handleCheck = (checklistId, e) => {
+    e.preventDefault();
+    const currList = this.props.list;
+    const currTodo = this.props.todo;
+    this.props.markDone(currList._id, currTodo._id, checklistId);
   };
 
   ChecklistRender = (todo) => {
@@ -157,7 +164,7 @@ export class TodoModal extends Component {
                   <span className=" mb-0 d-inline float-left">
                     <FormGroup check>
                       <Label check>
-                        <Input type="checkbox" />
+                        <Input type="checkbox" onChange={this.handleCheck.bind(this, item._id)}/>
                             {item.name}
                         </Label>
                     </FormGroup>

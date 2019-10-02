@@ -155,7 +155,9 @@ exports.markDoneInTodo = (req, res) => {
       "arrayFilters": [ { "todos._id" : req.params.todoId }, {"item._id": req.params.itemId }],
       "new": true, // This option returns the modified document, not the original one
     }
-  ).then((list) => { res.json(list)});
+  ).then((list) => {
+    const checklist = list.todos.id(req.params.todoId).checklist.id(req.params.itemId);
+    res.json(checklist)});
 }
 
 exports.deleteItem = (req, res) => {

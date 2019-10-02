@@ -6,7 +6,8 @@ import {
   CREATE_TODO,
   DELETE_TODO,
   GET_TODO,
-  CREATE_ITEM
+  CREATE_ITEM,
+  STATUS_ITEM
 } from "../actions/types";
 
 
@@ -79,6 +80,14 @@ export default function (state = initialState, action) {
           }
         };
 
+    case STATUS_ITEM:
+        return {
+          ...state,
+          currTodo: {
+            ...state.currTodo,
+            checklist: [...state.currTodo.checklist, action.payload ]
+            }
+          };
     default:
         return state;
   }
