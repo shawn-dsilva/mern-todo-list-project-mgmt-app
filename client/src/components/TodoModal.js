@@ -86,39 +86,25 @@ export class TodoModal extends Component {
 
   ChecklistRender = (todo) => {
 
-    if(Object.keys(todo).length !== 0 ) {
-    const checklist = todo.checklist;
-    if (checklist.length != 0) {
-      return ( checklist.map((item) =>
-        <ListGroupItem className=" my-3 todoStyle d-flex flex-row align-items-center justify-content-between" key={item._id} action>
-          <CardBody className="px-3">
-            <span className=" font-weight-bold mb-0 d-inline float-left">
-              {item.name}
-            </span>
-          </CardBody>
-        </ListGroupItem>)
-      );
-    } else {
+   if ( todo.checklist.length > 0 ) {
+     return (
+      todo.checklist.map((item) =>
+      <ListGroupItem className=" shadow-sm my-3 ml-4 w-50 d-flex flex-row align-items-center justify-content-between" key={item._id} action>
+         <span className=" mb-0 d-inline float-left">
+           <FormGroup check>
+             <Label check>
+               <Input type="checkbox" onChange={this.handleCheck.bind(this, item._id)}/>
+                   {item.name}
+               </Label>
+           </FormGroup>
+          </span>
+      </ListGroupItem>))
+      } else {
       return (
-      <Form onSubmit={this.onSubmit}>
-        <FormGroup>
-          <Input
-            type="text"
-            name="itemName"
-            id="itemName"
-            placeholder="Name"
-            className="w-75 mx-auto mb-4"
-            size="lg"
-            onChange={this.onChange}
-            autoComplete="off"
-          />
-          <Button className="w-75" size="lg" color="primary">
-            <FontAwesomeIcon icon={faPlus} /> &nbsp; Add an Item
-          </Button>
-        </FormGroup>
-      </Form>)
+      <div>
+        <p className="ml-4 mt-3">No items in this checklist, Add an item below.</p>
+      </div> )
     }
-  }
   };
 
   render() {
@@ -158,21 +144,7 @@ export class TodoModal extends Component {
               <FontAwesomeIcon icon={faTasks} /> Checklist &nbsp;
             </h4>
 
-             { todo.checklist.length > 0 ? (
-               todo.checklist.map((item) =>
-               <ListGroupItem className=" shadow-sm my-3 ml-4 w-50 d-flex flex-row align-items-center justify-content-between" key={item._id} action>
-                  <span className=" mb-0 d-inline float-left">
-                    <FormGroup check>
-                      <Label check>
-                        <Input type="checkbox" onChange={this.handleCheck.bind(this, item._id)}/>
-                            {item.name}
-                        </Label>
-                    </FormGroup>
-                   </span>
-               </ListGroupItem>)):( <div>
-            <p className="ml-4 mt-3">No items in this checklist, Add an item below.</p>
-           </div>)
-          }
+            {this.ChecklistRender(todo)}
           <Form onSubmit={this.onSubmit}>
             <FormGroup>
                <Input
