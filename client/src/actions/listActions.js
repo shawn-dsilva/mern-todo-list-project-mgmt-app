@@ -93,7 +93,7 @@ export const addNewItem = (listId, todoId, name) => (dispatch) => {
 
 export const markDone = (listId, todoId, checklistId) => (dispatch) => {
   axios
-    .post("/api/lists/" + listId + '/todo/' + todoId + '/item/' + checklistId, { withCredentials:true })
+    .put("/api/lists/" + listId + '/todo/' + todoId + '/item/' + checklistId, { withCredentials:true })
     .then((res) =>
       dispatch({
         type: STATUS_ITEM,

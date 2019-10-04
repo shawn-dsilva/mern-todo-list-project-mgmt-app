@@ -31,6 +31,8 @@ export class TodoModal extends Component {
     toggle: PropTypes.func.isRequired,
     modal: PropTypes.bool,
     addNewItem: PropTypes.func.isRequired,
+    addMarkDone: PropTypes.func.isRequired,
+
   };
 
   statusRender = (status) => {
@@ -88,7 +90,9 @@ export class TodoModal extends Component {
 
    if ( todo.checklist.length > 0 ) {
      return (
-      todo.checklist.map((item) =>
+      todo.checklist.map((item) => {
+      if(!item.isDone) {
+        return (
       <ListGroupItem className=" shadow-sm my-3 ml-4 w-50 d-flex flex-row align-items-center justify-content-between" key={item._id} action>
          <span className=" mb-0 d-inline float-left">
            <FormGroup check>
@@ -98,7 +102,20 @@ export class TodoModal extends Component {
                </Label>
            </FormGroup>
           </span>
-      </ListGroupItem>))
+        </ListGroupItem>)}
+      else {
+        return (
+        <ListGroupItem color="secondary" className=" shadow-sm my-3 ml-4 w-50 d-flex flex-row align-items-center justify-content-between" key={item._id} action>
+         <span className=" mb-0 d-inline float-left">
+           <FormGroup check>
+             <Label check>
+               <Input type="checkbox" onChange={this.handleCheck.bind(this, item._id)}/>
+               <s>{item.name}</s>
+               </Label>
+           </FormGroup>
+          </span>
+      </ListGroupItem>)
+      }}))
       } else {
       return (
       <div>
@@ -177,4 +194,4 @@ export class TodoModal extends Component {
   }
 }
 
-export default connect(null,{addNewItem})(TodoModal);
+export default connect(null,{addNewItem, markDone})(TodoModal);
