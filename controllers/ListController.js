@@ -149,7 +149,7 @@ exports.markDoneInTodo = (req, res) => {
       _id: req.params.listId,
     },
     {
-      $set: { "todos.$[todos].checklist.$[item].isDone": true  } // Adds new Item to checklist array
+      $set: { "todos.$[todos].checklist.$[item].isDone": req.body.isDone } // Adds new Item to checklist array
     },
     {
       "arrayFilters": [ { "todos._id" : req.params.todoId }, {"item._id": req.params.itemId }],

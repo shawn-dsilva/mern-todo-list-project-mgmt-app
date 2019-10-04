@@ -79,11 +79,12 @@ export class TodoModal extends Component {
     this.props.addNewItem(currList._id, currTodo._id, itemName);
   };
 
-  handleCheck = (checklistId, e) => {
+  handleCheck = (itemId, isDone, e) => {
     e.preventDefault();
+    e.stopPropagation();
     const currList = this.props.list;
     const currTodo = this.props.todo;
-    this.props.markDone(currList._id, currTodo._id, checklistId);
+    this.props.markDone(currList._id, currTodo._id, itemId, isDone);
   };
 
   ChecklistRender = (todo) => {
@@ -93,11 +94,11 @@ export class TodoModal extends Component {
       todo.checklist.map((item) => {
       if(!item.isDone) {
         return (
-      <ListGroupItem className=" shadow-sm my-3 ml-4 w-50 d-flex flex-row align-items-center justify-content-between" key={item._id} action>
+      <ListGroupItem className=" shadow-sm my-3 ml-4 w-50 d-flex flex-row align-items-center justify-content-between" key={item._id} >
          <span className=" mb-0 d-inline float-left">
            <FormGroup check>
              <Label check>
-               <Input type="checkbox" onChange={this.handleCheck.bind(this, item._id)}/>
+               <Input type="checkbox" checked={item.isDone} onChange={(e) => this.handleCheck( item._id, item.isDone, e )}/>
                    {item.name}
                </Label>
            </FormGroup>
@@ -109,7 +110,7 @@ export class TodoModal extends Component {
          <span className=" mb-0 d-inline float-left">
            <FormGroup check>
              <Label check>
-               <Input type="checkbox" onChange={this.handleCheck.bind(this, item._id)}/>
+               <Input type="checkbox" checked={item.isDone} onChange={(e) => this.handleCheck( item._id, item.isDone, e )}/>
                <s>{item.name}</s>
                </Label>
            </FormGroup>

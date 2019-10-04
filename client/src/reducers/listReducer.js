@@ -85,8 +85,9 @@ export default function (state = initialState, action) {
           ...state,
           currTodo: {
             ...state.currTodo,
-            checklist: [...state.currTodo.checklist, action.payload ]
-            // checklist: state.currTodo.checklist.map(item => item._id)
+            //checklist: [...state.currTodo.checklist, action.payload ]
+             checklist: state.currTodo.checklist.map( item => item._id === action.payload._id ?
+              {...item, isDone: action.payload.isDone} : item )
             }
           };
     default:
