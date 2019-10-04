@@ -144,12 +144,14 @@ exports.markDone = (req, res) => {
 };
 
 exports.markDoneInTodo = (req, res) => {
+  if(typeof req.body.isDone === 'boolean') {
+  const isDone = !req.body.isDone;
   List.findOneAndUpdate(
     { user: req.session.user.id,
       _id: req.params.listId,
     },
     {
-      $set: { "todos.$[todos].checklist.$[item].isDone": req.body.isDone } // Adds new Item to checklist array
+      $set: { "todos.$[todos].checklist.$[item].isDone": isDone } // Adds new Item to checklist array
     },
     {
       "arrayFilters": [ { "todos._id" : req.params.todoId }, {"item._id": req.params.itemId }],
@@ -158,6 +160,9 @@ exports.markDoneInTodo = (req, res) => {
   ).then((list) => {
     const checklist = list.todos.id(req.params.todoId).checklist.id(req.params.itemId);
     res.json(checklist)});
+  } else {
+    res.status(400).json('error');
+  }
 }
 
 exports.deleteItem = (req, res) => {
