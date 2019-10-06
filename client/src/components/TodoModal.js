@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { addNewItem, markDone } from "../actions/listActions";
+import { addNewItem, markDone, changeStatus } from "../actions/listActions";
 import { connect } from "react-redux";
 
 
@@ -32,8 +32,12 @@ export class TodoModal extends Component {
     modal: PropTypes.bool,
     addNewItem: PropTypes.func.isRequired,
     addMarkDone: PropTypes.func.isRequired,
-
+    changeStatus: PropTypes.func.isRequired,
   };
+
+  state = {
+    isOpenStatusMenu : false
+  }
 
   statusRender = (status) => {
     switch (status) {
@@ -66,6 +70,34 @@ export class TodoModal extends Component {
         );
     }
   };
+
+
+  toggleStatusMenu = () => {
+    this.setState({isOpenStatusMenu: !this.state.isOpenStatusMenu});
+  };
+
+  StatusMenu = () => {
+    const statusCodes = [
+    { name:'Done', color: 'border-success bg-success'},
+    {name:'In Progress', color: 'border-warning bg-warning'},
+    {name:'Not Started', color: 'border-danger bg-danger'}];
+    const className = "text-left  mb-0 mx-2 d-inline "
+    return (
+      statusCodes.map((status) =>
+        <Button key={status.name} className={className + status.color} onClick={(e) => {this.handleStatusChange(status.name, e)}}>
+          {status.name}
+        </Button>))
+  }
+
+  handleStatusChange = (status, e) => {
+    e.preventDefault();
+    const currList = this.props.list;
+    const currTodo = this.props.todo;
+    status = status.split(" ").join(' ');
+    console.log(status);
+    this.props.changeStatus(currList._id, currTodo._id, status );
+    this.toggleStatusMenu();
+  }
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -179,10 +211,13 @@ export class TodoModal extends Component {
              </FormGroup>
            </Form>
 
-            <p className="text-left font-weight-bold">
+            { !this.state.isOpenStatusMenu ? <p className="text-left font-weight-bold">
               Status: &nbsp;
               {this.statusRender(todo.status)}
-            </p>
+              <Button className="ml-4 bg-light border-light text-dark " size="sm" onClick={this.toggleStatusMenu}>Change Status</Button>
+            </p>: <div> <h4 className="font-weight-bold">Change Status</h4>  {this.StatusMenu()} </div>
+          }
+
           </ModalBody>
           <ModalFooter>
             <Button color="danger" onClick={this.props.toggle}>
@@ -195,4 +230,4 @@ export class TodoModal extends Component {
   }
 }
 
-export default connect(null,{addNewItem, markDone})(TodoModal);
+export default connect(null,{addNewItem, markDone, changeStatus})(TodoModal);

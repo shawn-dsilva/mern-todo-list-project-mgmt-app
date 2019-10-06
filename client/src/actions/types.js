@@ -21,3 +21,4 @@ export const ADD_TODO_DESC = 'ADD_TODO_DESC';
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const DELETE_ITEM = 'DELETE ITEM';
 export const STATUS_ITEM = 'STATUS_ITEM';
+export const STATUS_TODO = 'STATUS_TODO';

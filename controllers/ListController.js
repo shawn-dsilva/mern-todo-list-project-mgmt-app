@@ -73,7 +73,7 @@ exports.changeStatusTodo = (req, res) => {
             "arrayFilters": [ { "todos._id" : req.params.todoId } ],
             "new": true,
          }
-        ).then((list) => res.json(list));
+        ).then((list) => res.json(list.todos.id(req.params.todoId).status));
         break;
     default:
       res.status(422).json("Error : Invalid Input");

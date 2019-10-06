@@ -7,7 +7,8 @@ import {
   DELETE_TODO,
   GET_TODO,
   CREATE_ITEM,
-  STATUS_ITEM
+  STATUS_ITEM,
+  STATUS_TODO
 } from "../actions/types";
 
 
@@ -88,6 +89,14 @@ export default function (state = initialState, action) {
             //checklist: [...state.currTodo.checklist, action.payload ]
              checklist: state.currTodo.checklist.map( item => item._id === action.payload._id ?
               {...item, isDone: action.payload.isDone} : item )
+            }
+          };
+    case STATUS_TODO:
+          return {
+            ...state,
+            currTodo: {
+              ...state.currTodo,
+              status: action.payload
             }
           };
     default:
