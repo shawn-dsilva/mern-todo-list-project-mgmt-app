@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { addNewItem, markDone, changeStatus } from "../actions/listActions";
+import { addNewItem, markDone, changeStatus, addDesc } from "../actions/listActions";
 import { connect } from "react-redux";
 
 
@@ -33,10 +33,12 @@ export class TodoModal extends Component {
     addNewItem: PropTypes.func.isRequired,
     addMarkDone: PropTypes.func.isRequired,
     changeStatus: PropTypes.func.isRequired,
+    addDesc: PropTypes.func.isRequired,
   };
 
   state = {
-    isOpenStatusMenu : false
+    isOpenStatusMenu : false,
+    isOpenDescInput: false,
   }
 
   statusRender = (status) => {
@@ -157,6 +159,23 @@ export class TodoModal extends Component {
     }
   };
 
+  toggleEditBox = () => {
+    this.setState({isOpenDescInput: !this.state.isOpenDescInput});
+  }
+
+  descOnChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  descSubmit = e => {
+    e.preventDefault();
+    const currList = this.props.list;
+    const currTodo = this.props.todo;
+    const {desc} = this.state;
+    this.props.addDesc(currList._id, currTodo._id, desc);
+    this.toggleEditBox();
+  };
+
   render() {
     const todo = this.props.todo;
 
@@ -174,18 +193,33 @@ export class TodoModal extends Component {
           <ModalBody className=" m-3">
             <h4 className="text-left font-weight-bold ">
               <FontAwesomeIcon icon={faEdit} /> Description &nbsp;
-              <Button color="info" size="sm" >
+              <Button color="info" size="sm" onClick={this.toggleEditBox} >
                 Edit
               </Button>
             </h4>
 
-            <div className="my-3">
-              {!todo.description ? (
-                <p className="pl-4 text-left">
-                  No Description. Click Edit to add a Description{" "}
-                </p>
+            <div className="my-3 w-50">
+              {!this.state.isOpenDescInput ? (
+                   <p className="pl-4 text-left">{todo.desc}</p>
               ) : (
-                <p className="text-left">todo.description</p>
+                <Form onSubmit={this.descSubmit}>
+                <FormGroup>
+                   <Input
+                     type="textarea"
+                     name="desc"
+                     id="desc"
+                     placeholder="Add a description here"
+                     rows="4"
+                     className="w-50 ml-4 my-4"
+                     onChange={this.descOnChange}
+                     autoComplete="off"
+                     />
+                  <div className="d-flex flex-row w-50">
+                  <Button className=" w-100 ml-4" color="success"> Save </Button>
+                 <Button onClick={this.toggleEditBox} className=" w-100 ml-4" color="light"> Cancel </Button>
+                 </div>
+                 </FormGroup>
+               </Form>
               )}
               <br />
             </div>
@@ -230,4 +264,4 @@ export class TodoModal extends Component {
   }
 }
 
-export default connect(null,{addNewItem, markDone, changeStatus})(TodoModal);
+export default connect(null,{addNewItem, markDone, changeStatus, addDesc})(TodoModal);

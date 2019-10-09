@@ -190,3 +190,18 @@ exports.deleteItemInTodo = (req,res ) => {
     }
   ).then((list) => res.json(list));
 };
+
+exports.addDescription = (req, res) => {
+        List.findOneAndUpdate(
+          { _id: req.params.listId, user: req.session.user.id },
+          {
+            $set: { "todos.$[todos].desc": req.body.desc } // Adds new ToDo to todos array
+          },
+          {
+            "arrayFilters": [ { "todos._id" : req.params.todoId } ],
+            "new": true,
+         }
+        ).then((list) => res.json(list.todos.id(req.params.todoId).desc));
+
+
+};

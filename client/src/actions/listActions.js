@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { GET_LIST, GET_SINGLE_LIST, CREATE_LIST,
   DELETE_LIST, CREATE_TODO, DELETE_TODO, GET_TODO,
-CREATE_ITEM, STATUS_ITEM, STATUS_TODO } from './types'
+CREATE_ITEM, STATUS_ITEM, STATUS_TODO, ADD_DESC } from './types'
 
 export const getList = () => (dispatch) => {
   axios
@@ -108,6 +108,17 @@ export const changeStatus = (listId, todoId, status) => (dispatch) => {
     .then((res) =>
       dispatch({
         type: STATUS_TODO,
+        payload: res.data
+      })
+    )
+};
+
+export const addDesc = (listId, todoId, desc) => (dispatch) => {
+  axios
+    .put("/api/lists/" + listId + '/todo/' + todoId + '/desc', { desc: desc }, { withCredentials:true })
+    .then((res) =>
+      dispatch({
+        type: ADD_DESC,
         payload: res.data
       })
     )

@@ -8,6 +8,10 @@ const TodoSchema = new Schema({
     type: String,
     required: true
   },
+  desc: {
+    type: String,
+    default: "No Description. Click Edit to add a Description",
+  },
   date: {
     type: Date,
     default: Date.now

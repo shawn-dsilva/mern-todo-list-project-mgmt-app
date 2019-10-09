@@ -8,7 +8,8 @@ import {
   GET_TODO,
   CREATE_ITEM,
   STATUS_ITEM,
-  STATUS_TODO
+  STATUS_TODO,
+  ADD_DESC
 } from "../actions/types";
 
 
@@ -97,6 +98,14 @@ export default function (state = initialState, action) {
             currTodo: {
               ...state.currTodo,
               status: action.payload
+            }
+          };
+    case ADD_DESC:
+          return {
+            ...state,
+            currTodo: {
+              ...state.currTodo,
+              desc: action.payload
             }
           };
     default:

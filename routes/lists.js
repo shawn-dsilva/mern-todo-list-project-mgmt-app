@@ -7,7 +7,7 @@ const {
   getAllLists, getSingleList, createNewList, deleteOneList,
   addTodo, deleteTodo, deleteItemInTodo, addItem,addItemInTodo,
   deleteItem, markDone, markDoneInTodo, changeStatusTodo,
-  getSingleTodo
+  getSingleTodo, addDescription
 } = require("../controllers/ListController");
 
 // Get All the Lists
@@ -61,5 +61,8 @@ router.delete("/:listId/item/:itemId", isAuth, deleteItem );
 // Delete a single item from a given checklist in a Todo
 // This is an Atomic Operation
 router.delete("/:listId/todo/:todoId/item/:itemId", isAuth, deleteItemInTodo );
+
+router.put("/:listId/todo/:todoId/desc", isAuth, addDescription );
+
 
 module.exports = router;
