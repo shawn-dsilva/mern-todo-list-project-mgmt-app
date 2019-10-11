@@ -46,29 +46,23 @@ export class TodoModal extends Component {
       case "Done":
         status = "Done";
         return (
-          <h5 className="mb-0 d-inline">
-            <span className="text-left badge badge-pill badge-success">
+            <span className="text-left badge badge-success">
               {status}
             </span>
-          </h5>
         );
       case "InProgress":
         status = "In Progress";
         return (
-          <h5 className="mb-0 d-inline">
-            <span className="text-left badge badge-pill badge-warning">
+            <span className="text-left badge badge-warning">
               {status}
             </span>
-          </h5>
         );
       case "NotStarted":
         status = "Not Started";
         return (
-          <h5 className="mb-0 d-inline">
-            <span className="text-left badge badge-pill badge-danger">
+            <span className="text-left badge badge-danger">
               {status}
             </span>
-          </h5>
         );
     }
   };
@@ -95,7 +89,7 @@ export class TodoModal extends Component {
     e.preventDefault();
     const currList = this.props.list;
     const currTodo = this.props.todo;
-    status = status.split(" ").join('');
+    status = status.split(" ").join(' ');
     console.log(status);
     this.props.changeStatus(currList._id, currTodo._id, status );
     this.toggleStatusMenu();
@@ -200,7 +194,7 @@ export class TodoModal extends Component {
 
             <div className="my-3 w-50">
               {!this.state.isOpenDescInput ? (
-                   <p className="pl-4 text-left">{todo.desc}</p>
+                   <p className="pl-4 text-left text-muted">{todo.desc}</p>
               ) : (
                 <Form onSubmit={this.descSubmit}>
                 <FormGroup>
@@ -210,7 +204,7 @@ export class TodoModal extends Component {
                      id="desc"
                      placeholder="Add a description here"
                      rows="4"
-                     className="w-50 ml-4 my-4"
+                     className="w-100 ml-4 my-4"
                      onChange={this.descOnChange}
                      autoComplete="off"
                      />
@@ -245,11 +239,11 @@ export class TodoModal extends Component {
              </FormGroup>
            </Form>
 
-            { !this.state.isOpenStatusMenu ? <p className="text-left font-weight-bold">
+            { !this.state.isOpenStatusMenu ? <h4 className="text-left font-weight-bold">
               Status: &nbsp;
               {this.statusRender(todo.status)}
               <Button className="ml-4 bg-light border-light text-dark " size="sm" onClick={this.toggleStatusMenu}>Change Status</Button>
-            </p>: <div> <h4 className="font-weight-bold">Change Status</h4>  {this.StatusMenu()} </div>
+            </h4>: <div> <h4 className="font-weight-bold">Change Status</h4>  {this.StatusMenu()} </div>
           }
 
           </ModalBody>

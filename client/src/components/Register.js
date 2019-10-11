@@ -113,6 +113,7 @@ class Register extends Component {
               <FormGroup className="text-center">
                 <Label for="name">Username</Label>
                 <Input
+                  size="lg"
                   type="text"
                   name="name"
                   id="name"
@@ -125,6 +126,7 @@ class Register extends Component {
 
                 <Label for="email">E-mail</Label>
                 <Input
+                  size="lg"
                   type="email"
                   name="email"
                   id="email"
@@ -137,6 +139,7 @@ class Register extends Component {
 
                 <Label for="password">Password</Label>
                 <Input
+                  size="lg"
                   type="password"
                   name="password"
                   id="password"
@@ -146,7 +149,7 @@ class Register extends Component {
                   autoComplete="off"
 
                 />
-                <Button color="dark" style={{ marginTop: "2rem" }} block>
+                <Button size="lg" color="primary" style={{ marginTop: "2rem" }} block>
                   Register
                 </Button>
               </FormGroup>

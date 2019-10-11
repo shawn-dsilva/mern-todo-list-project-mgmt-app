@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {
   Card,
   CardTitle,
+  CardHeader,
   CardSubtitle,
   CardBody,
   ListGroup,
@@ -33,16 +34,28 @@ export class SingleList extends Component {
   };
 
   statusRender = (status) => {
-    switch(status){
-    case 'Done':
-      status = 'Done';
-      return <h5 className="mb-0 d-inline"><span className="text-left badge badge-pill badge-success">{status}</span></h5>
-    case 'InProgress':
-        status = 'In Progress';
-      return <h5 className="mb-0 d-inline"><span className="text-left badge badge-pill badge-warning">{status}</span></h5>
-    case 'NotStarted':
-        status = 'Not Started';
-      return <h5 className="mb-0 d-inline"><span className="text-left badge badge-pill badge-danger">{status}</span></h5>
+    switch (status) {
+      case "Done":
+        status = "Done";
+        return (
+            <span className="text-left badge badge-success">
+              {status}
+            </span>
+        );
+      case "InProgress":
+        status = "In Progress";
+        return (
+            <span className="text-left badge badge-warning">
+              {status}
+            </span>
+        );
+      case "NotStarted":
+        status = "Not Started";
+        return (
+            <span className="text-left badge badge-danger">
+              {status}
+            </span>
+        );
     }
   }
 
@@ -90,25 +103,28 @@ export class SingleList extends Component {
             <br/>
             {
               currList.todos.map( (todo) =>
-              <ListGroupItem  className=" my-3 todoStyle d-flex flex-row align-items-center justify-content-between" key={todo._id} onClick={this.todoModal.bind(this, currList._id, todo._id)} action>
+              <ListGroupItem  className=" my-3 todoStyle d-flex flex-row align-items-center justify-content-between" key={todo._id} onClick={this.todoModal.bind(this, currList._id, todo._id)}>
               <CardBody className="px-3" >
+              <CardHeader>
               <h2 className=" font-weight-bold mb-0 d-inline float-left">{todo.name}</h2>
               <span className="text-muted float-right d-flex flex-row  align-items-center justify-content-between">
                 <Moment  className="pr-3" date={todo.date} format="MMM DD YYYY"></Moment>
               <Button className="float-right" color="danger" size="md" onClick={this.onDelete.bind(this, currList._id, todo._id)}> <FontAwesomeIcon icon={faTrashAlt} /></Button>
               </span>
+              </CardHeader>
+
               <br/>
               <br/>
               <hr></hr>
 
-              <p className ="text-left font-weight-bold">Description:</p>
-              { !todo.description ? <p className="text-left">No Description Given.</p> : <p className="text-left">todo.description</p> }
+              <h5 className ="text-left font-weight-bold">Description</h5>
+              { !todo.desc ? <p className="text-left">No Description Given.</p> : <p className="text-left w-75 text-muted">{todo.desc}</p> }
               <br/>
-              <p className ="text-left font-weight-bold">Status: &nbsp;
+              <h5 className ="text-left font-weight-bold">Status &nbsp;
               {
                 this.statusRender(todo.status)
               }
-              </p>
+              </h5>
               </CardBody>
               </ListGroupItem>
 

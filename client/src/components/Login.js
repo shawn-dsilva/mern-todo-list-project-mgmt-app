@@ -92,6 +92,7 @@ onSubmit = (e) => {
 
                     <Label for="email">E-mail</Label>
                     <Input
+                      size="lg"
                       type="email"
                       name="email"
                       id="email"
@@ -103,6 +104,7 @@ onSubmit = (e) => {
 
                     <Label for="password">Password</Label>
                     <Input
+                      size="lg"
                       type="password"
                       name="password"
                       id="password"
@@ -111,7 +113,7 @@ onSubmit = (e) => {
                       onChange={this.onChange}
                       autoComplete="off"
                     />
-                    <Button color="dark" style={{ marginTop: "2rem" }} block>
+                    <Button size="lg" color="primary" style={{ marginTop: "2rem" }} block>
                       Login
                     </Button>
                   </FormGroup>
