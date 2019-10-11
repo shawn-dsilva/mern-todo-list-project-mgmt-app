@@ -104,19 +104,16 @@ export class SingleList extends Component {
             {
               currList.todos.map( (todo) =>
               <ListGroupItem  className=" my-3 todoStyle d-flex flex-row align-items-center justify-content-between" key={todo._id} onClick={this.todoModal.bind(this, currList._id, todo._id)}>
-              <CardBody className="px-3" >
               <CardHeader>
-              <h2 className=" font-weight-bold mb-0 d-inline float-left">{todo.name}</h2>
-              <span className="text-muted float-right d-flex flex-row  align-items-center justify-content-between">
+              <h2 className=" font-weight-bold ">{todo.name}</h2>
+              <span className="text-muted">
                 <Moment  className="pr-3" date={todo.date} format="MMM DD YYYY"></Moment>
               <Button className="float-right" color="danger" size="md" onClick={this.onDelete.bind(this, currList._id, todo._id)}> <FontAwesomeIcon icon={faTrashAlt} /></Button>
               </span>
               </CardHeader>
-
               <br/>
               <br/>
-              <hr></hr>
-
+              <CardBody className="px-3" >
               <h5 className ="text-left font-weight-bold">Description</h5>
               { !todo.desc ? <p className="text-left">No Description Given.</p> : <p className="text-left w-75 text-muted">{todo.desc}</p> }
               <br/>
