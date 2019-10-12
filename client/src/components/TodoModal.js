@@ -89,7 +89,7 @@ export class TodoModal extends Component {
     e.preventDefault();
     const currList = this.props.list;
     const currTodo = this.props.todo;
-    status = status.split(" ").join(' ');
+    status = status.split(" ").join('');
     console.log(status);
     this.props.changeStatus(currList._id, currTodo._id, status );
     this.toggleStatusMenu();

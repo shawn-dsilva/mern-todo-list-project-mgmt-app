@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import {
   Card,
   CardTitle,
   CardHeader,
+  CardFooter,
   CardSubtitle,
   CardBody,
   ListGroup,
@@ -24,7 +25,7 @@ import TodoModal from './TodoModal';
 
 export class SingleList extends Component {
 
-  state = { isOpen: false };
+  state = { isOpen: false,  };
 
   static propTypes = {
     currList: PropTypes.object.isRequired,
@@ -95,34 +96,30 @@ export class SingleList extends Component {
     return (
       <Card className=" w-75 listStyle">
         <CardBody >
-        <CardTitle><h1>{this.props.currList.name}</h1></CardTitle>
+        <CardTitle><h1 className="font-weight-bold">{this.props.currList.name}</h1></CardTitle>
         <CardSubtitle><h5 className="text-muted">Select a todo or  create a new todo to get started </h5></CardSubtitle>
             <br/>
           <ListGroup>
-          <br/>
-            <br/>
             {
               currList.todos.map( (todo) =>
-              <ListGroupItem  className=" my-3 todoStyle d-flex flex-row align-items-center justify-content-between" key={todo._id} onClick={this.todoModal.bind(this, currList._id, todo._id)}>
+              <ListGroupItem  className=" my-3  todoStyle p-0" key={todo._id} onClick={this.todoModal.bind(this, currList._id, todo._id)}>
               <CardHeader>
-              <h2 className=" font-weight-bold ">{todo.name}</h2>
-              <span className="text-muted">
-                <Moment  className="pr-3" date={todo.date} format="MMM DD YYYY"></Moment>
-              <Button className="float-right" color="danger" size="md" onClick={this.onDelete.bind(this, currList._id, todo._id)}> <FontAwesomeIcon icon={faTrashAlt} /></Button>
-              </span>
+              <div className="d-flex flex-row justify-content-between" >
+              <h2 className=" d-block font-weight-bold text-truncate" id={todo.name}>{todo.name}</h2>
+          <Button className="" color="danger" size="md" onClick={this.onDelete.bind(this, currList._id, todo._id)}><FontAwesomeIcon icon={faTrashAlt} /></Button>
+              </div>
+                <Moment  className="d-flex justify-content-start text-muted" date={todo.date} format="MMM DD YYYY"></Moment>
               </CardHeader>
-              <br/>
-              <br/>
-              <CardBody className="px-3" >
+              <CardBody className="p-3" >
               <h5 className ="text-left font-weight-bold">Description</h5>
               { !todo.desc ? <p className="text-left">No Description Given.</p> : <p className="text-left w-75 text-muted">{todo.desc}</p> }
               <br/>
-              <h5 className ="text-left font-weight-bold">Status &nbsp;
-              {
-                this.statusRender(todo.status)
-              }
-              </h5>
               </CardBody>
+              <CardFooter className ="text-left">
+              <h5 className ="d-inline font-weight-bold">Status &nbsp; </h5>
+              <h4 className ="d-inline">{this.statusRender(todo.status)}</h4>
+              <br/>
+              </CardFooter>
               </ListGroupItem>
 
               )
