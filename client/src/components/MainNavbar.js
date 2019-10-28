@@ -52,7 +52,7 @@ export class MainNavbar extends Component {
               </span>
           </NavItem>
         <NavItem>
-        <NavLink onClick={this.onLogout} href="#">
+        <NavLink className="text-white font-weight-bold" onClick={this.onLogout} href="#">
           Logout
         </NavLink>
         </NavItem>
@@ -62,21 +62,30 @@ export class MainNavbar extends Component {
     const guestLinks = (
       <Fragment>
         <NavItem>
-        <NavLink className='divStyle' href="/login">Sign In</NavLink>
+        <NavLink className="divStyle text-white font-weight-bold" href="/login">Sign In</NavLink>
         </NavItem>
         <NavItem>
-        <NavLink className='divStyle' href="/register"> Register </NavLink>
+        <NavLink className="divStyle text-white font-weight-bold" href="/register"> Register </NavLink>
         </NavItem>
       </Fragment>
     );
 
     return (
       <div>
-        <Navbar color="dark" dark expand="sm" className="mb-5">
+        <Navbar color="dark" dark expand="sm" >
           <Container>
-            <NavbarBrand href="/">List Wala</NavbarBrand>
+            <NavbarBrand href="/"><h3 className="mb-0"> <strong class="text-primary" >List</strong><span>Wala</span></h3></NavbarBrand>
+
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
+
+
+            { isAuthenticated ? <Nav className="mr-auto text-white" navbar>
+           <NavItem>
+              <NavLink className="text-white font-weight-bold active" href="/listpage"> Back to List Home </NavLink>
+            </NavItem>
+            </Nav> : null}
+
               <Nav className="ml-auto" navbar >
               { isAuthenticated ? authLinks : guestLinks }
               </Nav>

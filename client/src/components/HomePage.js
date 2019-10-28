@@ -37,10 +37,10 @@ export class HomePage extends Component {
     return (
        <div className="container">
         <div className="main">
-          <h1> <strong>MERN</strong> Sessions Auth App </h1>
+          <h1> <strong class="text-primary" >List</strong><span>Wala</span></h1>
           <br/>
-            <h5>Minimalistic Sessions based Authentication app <span role="img" aria-label="lock">🔒 </span><br></br>Built with React + Redux, NodeJS, Express, MongoDB and Bootstrap</h5>
-            <h5>Uses Cookies <span role="img" aria-label="lock">🍪 </span></h5>
+            <h5>A ToDo List and Project Management App
+              <br></br>Built with React + Redux, NodeJS, Express, MongoDB and Bootstrap. <br></br>Hosted using Nginx & Docker on AWS</h5>
           <br/>
           <div>
 

@@ -94,7 +94,7 @@ export class SingleList extends Component {
   render() {
     const currList = this.props.currList;
     return (
-      <Card className=" w-75 listStyle">
+      <Card className=" w-75 listStyle my-5">
         <CardBody >
         <CardTitle><h1 className="font-weight-bold">{this.props.currList.name}</h1></CardTitle>
         <CardSubtitle><h5 className="text-muted">Select a todo or  create a new todo to get started </h5></CardSubtitle>
