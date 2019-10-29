@@ -88,9 +88,9 @@ export class ListPage extends Component {
 
   render() {
 
-    if(!this.props.authState.isAuthenticated) {
-      return <Redirect to="/" />
-    }
+    // if(!this.props.authState.isAuthenticated) {
+    //   return <Redirect to="/" />
+    // }
 
     return (
       <div className="container">

@@ -20,10 +20,10 @@ import { ListPage } from './ListPage';
 
 export class HomePage extends Component {
 
-  componentDidMount() {
-    // Check if session cookie is present
-    store.dispatch(isAuth());
-  }
+  // componentDidMount() {
+  //   // Check if session cookie is present
+  //   store.dispatch(isAuth());
+  // }
 
   static propTypes = {
     button: PropTypes.bool,
@@ -32,9 +32,9 @@ export class HomePage extends Component {
 
   render() {
 
-    if(this.props.isAuthenticated) {
-      return <Redirect to="/listpage" />
-    }
+    // if(this.props.isAuthenticated) {
+    //   return <Redirect to="/listpage" />
+    // }
 
     return (
        <div className="container">
@@ -49,7 +49,6 @@ export class HomePage extends Component {
             <Switch>
               <Route exact path ="/login" component={Login}/>
               <Route exact path ="/register" component={Register}/>
-              <Route exact path="/listpage/:listId" component={SingleList}/>
             </Switch>
 
              { this.props.button && <Link className='divStyle' to="/login">
