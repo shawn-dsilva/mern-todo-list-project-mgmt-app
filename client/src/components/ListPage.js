@@ -21,6 +21,8 @@ import SingleList from "./SingleList";
 import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { Route, Switch, Link } from 'react-router-dom'
+
 
 export class ListPage extends Component {
 
@@ -56,13 +58,16 @@ export class ListPage extends Component {
   displayLists = () => {
     const items = this.props.items;
     const listItems = items.map((item) =>
-      <ListGroupItem className="d-flex flex-row align-items-center justify-content-between" tag="button" key={item._id} action onClick={this.selectList.bind(this, item._id)}>
-      <h3 className=" font-weight-bold mb-0 d-inline float-left">{item.name}</h3>
-      { <span>
-        <Moment  date={item.date} format="MMM DD YYYY"></Moment>
-        </span>}
-      <Button className="float-right" color="danger" size="md" onClick={this.onDelete.bind(this, item._id)}> <FontAwesomeIcon icon={faTrashAlt} /></Button>
-      </ListGroupItem>
+    <Link to={`/listpage/${item._id}`}>
+        <ListGroupItem className="d-flex flex-row align-items-center justify-content-between" tag="button" key={item._id} action>
+        <h3 className=" font-weight-bold mb-0 d-inline float-left">{item.name}</h3>
+        { <span>
+          <Moment  date={item.date} format="MMM DD YYYY"></Moment>
+          </span>}
+        <Button className="float-right" color="danger" size="md" onClick={this.onDelete.bind(this, item._id)}> <FontAwesomeIcon icon={faTrashAlt} /></Button>
+        </ListGroupItem>
+      </Link>
+
     );
     return (
       <ListGroup>{listItems}</ListGroup>

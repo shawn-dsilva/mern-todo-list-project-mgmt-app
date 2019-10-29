@@ -111,6 +111,11 @@ export default function (state = initialState, action) {
             currTodo: {
               ...state.currTodo,
               desc: action.payload
+            },
+            currList: {
+              ...state.currList,
+              todos: state.currList.todos.map( todo => todo._id === state.currTodo._id ?
+                {...todo, desc: action.payload}: todo )
             }
           };
     default:

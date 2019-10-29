@@ -17,7 +17,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Moment from 'react-moment';
 import 'moment-timezone'
-import { createNewTodo, deleteOneTodo, getOneTodo } from "../actions/listActions";
+import { getSingleList, createNewTodo, deleteOneTodo, getOneTodo } from "../actions/listActions";
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -32,7 +32,14 @@ export class SingleList extends Component {
     currTodo: PropTypes.object.isRequired,
     createNewTodo: PropTypes.func.isRequired,
     deleteOneTodo: PropTypes.func.isRequired,
+    getSingleList: PropTypes.func.isRequired,
+
   };
+
+  componentDidMount() {
+    const { listId } = this.props.match.params;
+      this.props.getSingleList(listId);
+  }
 
   statusRender = (status) => {
     switch (status) {
@@ -92,6 +99,7 @@ export class SingleList extends Component {
   }
 
   render() {
+    if (Object.keys(this.props.currList).length !== 0) {
     const currList = this.props.currList;
     return (
       <Card className=" w-75 listStyle my-5">
@@ -150,6 +158,11 @@ export class SingleList extends Component {
         </CardBody>
       </Card>
     )
+          } else {
+            return (
+              <h1>Loading</h1>
+            )
+          }
   }
 }
 
@@ -159,4 +172,4 @@ const mapStateToProps = (state) => ({ //Maps state to redux store as props
   currTodo: state.list.currTodo,
 });
 
-export default connect(mapStateToProps, { createNewTodo, deleteOneTodo, getOneTodo })(SingleList);
+export default connect(mapStateToProps, { getSingleList, createNewTodo, deleteOneTodo, getOneTodo })(SingleList);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Login from './Login';
 import Register from './Register';
+import SingleList from './SingleList';
 import { connect } from "react-redux";
 import { Route, Switch, Link } from 'react-router-dom'
 import {
@@ -12,6 +13,7 @@ import './style.css';
 import store from '../store';
 import { isAuth } from '../actions/authActions'
 import {Redirect} from 'react-router-dom'
+import { ListPage } from './ListPage';
 
 
 
@@ -47,6 +49,7 @@ export class HomePage extends Component {
             <Switch>
               <Route exact path ="/login" component={Login}/>
               <Route exact path ="/register" component={Register}/>
+              <Route exact path="/listpage/:listId" component={SingleList}/>
             </Switch>
 
              { this.props.button && <Link className='divStyle' to="/login">
