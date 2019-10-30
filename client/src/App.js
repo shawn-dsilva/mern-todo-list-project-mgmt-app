@@ -26,11 +26,10 @@ class App extends Component {
       <Provider store={store}>
             <MainNavbar/>
             <Switch>
-              <Route exact path ="/" component={HomePage}/>
               <Route exact path ="/profile" component={Profile}/>
               <Route exact path ="/listpage" component={ListPage}/>
               <Route exact path="/listpage/:listId" component={SingleList}/>
-
+              <Route path ="/" component={HomePage}/>
             </Switch>
       </Provider>
     );
