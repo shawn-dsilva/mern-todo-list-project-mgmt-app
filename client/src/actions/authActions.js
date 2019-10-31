@@ -15,19 +15,18 @@ import {
 export const isAuth = () => (dispatch) => {
 
     axios
-    .get("/api/users/authchecker",{withCredentials:true})
-    .then((res) =>
+    .get("/api/users/authchecker", {withCredentials:true})
+    .then((res) => {
       dispatch({
         type: AUTH_SUCCESS,
         payload: res.data
-      })
-    )
+      });
+    })
     .catch((err) => {
       dispatch({
         type: AUTH_FAIL
       });
     });
-
 }
 
 //Register New User

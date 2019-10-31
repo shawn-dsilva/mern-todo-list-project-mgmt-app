@@ -10,27 +10,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Provider } from 'react-redux';
 import { isAuth } from './actions/authActions'
-
+import AuthService from './services/AuthService';
 import store from './store';
 
 
 class App extends Component {
 
-  componentDidMount() {
-    // Check if session cookie is present
-    store.dispatch(isAuth());
-  }
-
   render () {
     return (
       <Provider store={store}>
             <MainNavbar/>
-            <Switch>
-              <Route exact path ="/profile" component={Profile}/>
-              <Route exact path ="/listpage" component={ListPage}/>
-              <Route exact path="/listpage/:listId" component={SingleList}/>
-              <Route path ="/" component={HomePage}/>
-            </Switch>
+            <AuthService/>
       </Provider>
     );
 }
