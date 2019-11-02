@@ -8,7 +8,7 @@ function ProtectedRoute ({component: Component, isAuthenticated, ...rest}) {
     <Route
       {...rest}
       render={(props) => isAuthenticated === true
-        ? <Redirect to={{pathname: '/listpage', state: {from: props.location}}} />
+        ? <div>{console.log(props)}<Redirect to={{pathname: props.location.state.from.pathname, state: {from: props.location}}} /></div>
         :  <Component {...props} />}
     />
   )

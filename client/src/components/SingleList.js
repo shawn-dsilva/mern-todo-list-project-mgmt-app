@@ -11,7 +11,9 @@ import {
   Form,
   FormGroup,
   Input,
-  Button
+  Button,
+  Spinner
+
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -163,7 +165,12 @@ export class SingleList extends Component {
     )
           } else {
             return (
-              <h1>Loading</h1>
+              <div className="container">
+              <div className="mt-auto mb-auto ml-auto mr-auto">
+              <Spinner className="ml-auto mr-auto" style={{ width: '3.5rem', height: '3.5rem' }}/>
+              <h3 className="d-block" >LOADING</h3>
+              </div>
+              </div>
             )
           }
   }
