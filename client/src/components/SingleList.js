@@ -102,6 +102,8 @@ export class SingleList extends Component {
     if (Object.keys(this.props.currList).length !== 0) {
     const currList = this.props.currList;
     return (
+      <div className="container">
+
       <Card className=" w-75 listStyle my-5">
         <CardBody >
         <CardTitle><h1 className="font-weight-bold">{this.props.currList.name}</h1></CardTitle>
@@ -157,6 +159,7 @@ export class SingleList extends Component {
             </Form>
         </CardBody>
       </Card>
+      </div>
     )
           } else {
             return (
