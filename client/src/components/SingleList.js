@@ -24,6 +24,7 @@ import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import TodoModal from './TodoModal';
+import LoadingSpinner from './LoadingSpinner';
 
 export class SingleList extends Component {
 
@@ -165,12 +166,7 @@ export class SingleList extends Component {
     )
           } else {
             return (
-              <div className="container">
-              <div className="mt-auto mb-auto ml-auto mr-auto">
-              <Spinner className="ml-auto mr-auto" style={{ width: '3.5rem', height: '3.5rem' }}/>
-              <h3 className="d-block" >LOADING</h3>
-              </div>
-              </div>
+              <LoadingSpinner/>
             )
           }
   }

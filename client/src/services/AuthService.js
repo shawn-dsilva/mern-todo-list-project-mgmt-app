@@ -8,7 +8,7 @@ import SingleList from '../components/SingleList';
 import { Route, Switch} from 'react-router-dom'
 import ProtectedRoute from '../components/ProtectedRoute';
 import ProtectedRouteIfAuth from '../components/ProtectedRouteIfAuth';
-
+import LoadingSpinner from '../components/LoadingSpinner';
 import store from '../store';
 
 export class AuthService extends Component {
@@ -21,12 +21,8 @@ export class AuthService extends Component {
   //     return this.props.isAuthenticated
   //   });
   // };
-componentDidMount() {
-  this.props.isAuth();
-
-}
   render() {
-
+    if(this.props.isAuthenticated === true || this.props.isAuthenticated === false) {
     return (
       <Switch>
         <ProtectedRoute
@@ -50,6 +46,9 @@ componentDidMount() {
         <ProtectedRouteIfAuth isAuthenticated={this.props.isAuthenticated} path="/" component={HomePage} />
       </Switch>
     );
+    } else {
+      return <LoadingSpinner/>
+    }
   }
 }
 

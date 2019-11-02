@@ -16,7 +16,11 @@ import store from './store';
 
 class App extends Component {
 
+  componentDidMount(){
+    store.dispatch(isAuth());
+  }
   render () {
+
     return (
       <Provider store={store}>
             <MainNavbar/>
