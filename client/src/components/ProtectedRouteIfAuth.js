@@ -7,9 +7,21 @@ function ProtectedRoute ({component: Component, isAuthenticated, ...rest}) {
   return (
     <Route
       {...rest}
-      render={(props) => isAuthenticated === true
-        ? <div>{console.log(props)}<Redirect to={{pathname: props.location.state.from.pathname, state: {from: props.location}}} /></div>
-        :  <Component {...props} />}
+      render={(props) => {
+        if(isAuthenticated === true) {
+          console.log(props);
+          const loc = props.location.pathname;
+          console.log(loc);
+          if ((loc === '/' || loc === '/login' || loc === '/register') && props.location.state === undefined) {
+            //Redirects all routes that are root /, /login or /register to /listpage if there are no previous routes in state
+            return <Redirect to={{pathname: '/listpage', state: props.location}} />
+          } else {
+            return <Redirect to={{pathname: props.location.state.from.pathname, state: props.location}} />
+          }
+        } else {
+        return <Component {...props} />
+        }
+        }}
     />
   )
 }
