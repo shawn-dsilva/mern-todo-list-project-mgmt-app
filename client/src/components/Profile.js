@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import Helmet from 'react-helmet';
+
 import {
   Button,
   Card,
@@ -39,6 +41,9 @@ export class Profile extends Component {
 
     return (
        <div className="container">
+         <Helmet>
+          <title>User Profile</title>
+        </Helmet>
         <div className="main">
           <Card>
             <CardBody>

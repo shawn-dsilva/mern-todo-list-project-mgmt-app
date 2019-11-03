@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
 import { isAuth } from './actions/authActions'
 import MainRouter from './components/Routing/MainRouter';
 import store from './store';
-
+import { Helmet } from 'react-helmet';
 
 class App extends Component {
 
@@ -22,7 +22,11 @@ class App extends Component {
   render () {
 
     return (
+
       <Provider store={store}>
+    <Helmet titleTemplate="ListWala | %s " defaultTitle="ListWala">
+          <meta name="description" content="A ToDo List and Project Management App" />
+    </Helmet>
             <MainNavbar/>
             <MainRouter/>
       </Provider>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Helmet from 'react-helmet';
 import {
   Button,
   Form,
@@ -96,6 +97,9 @@ class Register extends Component {
     }
     return (
       <div className={className}>
+        <Helmet>
+          <title>Register</title>
+        </Helmet>
         <Card className="listStyle">
           <CardBody>
             <CardTitle>
@@ -121,7 +125,6 @@ class Register extends Component {
                   className="mb-3"
                   onChange={this.onChange}
                   autoComplete="off"
-
                 />
 
                 <Label for="email">E-mail</Label>
@@ -134,7 +137,6 @@ class Register extends Component {
                   className="mb-3"
                   onChange={this.onChange}
                   autoComplete="off"
-
                 />
 
                 <Label for="password">Password</Label>
@@ -147,9 +149,12 @@ class Register extends Component {
                   className="mb-3"
                   onChange={this.onChange}
                   autoComplete="off"
-
                 />
-                <Button size="lg" color="primary" style={{ marginTop: "2rem" }} block>
+                <Button
+                  size="lg"
+                  color="primary"
+                  style={{ marginTop: "2rem" }}
+                  block>
                   Register
                 </Button>
               </FormGroup>

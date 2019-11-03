@@ -15,7 +15,7 @@ import { connect } from "react-redux"; // API to connect component state to redu
 import PropTypes from "prop-types";
 import { buttonClicked } from "../actions/uiActions";
 import { login } from "../actions/authActions";
-
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom'
 import './style.css';
 
@@ -76,7 +76,9 @@ onSubmit = (e) => {
     }
     return (
       <div className={className}>
-
+      <Helmet>
+          <title>Login</title>
+      </Helmet>
             <Card className="listStyle">
                 <CardBody >
                   <CardTitle> <h2><strong>Login</strong></h2></CardTitle>

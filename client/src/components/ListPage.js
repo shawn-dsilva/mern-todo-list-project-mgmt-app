@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Helmet from 'react-helmet';
+
 import {
   Button,
   Card,
@@ -94,6 +96,9 @@ export class ListPage extends Component {
 
     return (
       <div className="container">
+        <Helmet>
+          <title>List Home</title>
+        </Helmet>
       <div className="w-75">
         { Object.keys(this.props.currList).length === 0 ? (
         <Card className="listHomeStyle">
