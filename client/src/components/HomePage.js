@@ -37,7 +37,7 @@ export class HomePage extends Component {
     // }
 
     return (
-       <div className="container">
+       <div className="HomeContainer">
         <div className="main">
           <h1> <strong className="text-primary" >List</strong><span>Wala</span></h1>
           <br/>
