@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Provider } from 'react-redux';
 import { isAuth } from './actions/authActions'
-import AuthService from './services/AuthService';
+import MainRouter from './components/Routing/MainRouter';
 import store from './store';
 
 
@@ -24,7 +24,7 @@ class App extends Component {
     return (
       <Provider store={store}>
             <MainNavbar/>
-            <AuthService/>
+            <MainRouter/>
       </Provider>
     );
 }

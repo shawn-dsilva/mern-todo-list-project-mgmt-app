@@ -1,20 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { isAuth } from "../actions/authActions";
-import HomePage from '../components/HomePage';
-import Profile from '../components/Profile';
-import ListPage from '../components/ListPage';
-import SingleList from '../components/SingleList';
+import { isAuth } from "../../actions/authActions";
+import HomePage from '../HomePage';
+import Profile from '../Profile';
+import ListPage from '../ListPage';
+import SingleList from '../SingleList';
 import { Route, Switch} from 'react-router-dom'
-import ProtectedRoute from '../components/ProtectedRoute';
-import ProtectedRouteIfAuth from '../components/ProtectedRouteIfAuth';
-import LoadingSpinner from '../components/LoadingSpinner';
-import Error404 from '../components/Error404';
-import Login from '../components/Login';
-import Register from '../components/Register';
-import store from '../store';
+import ProtectedRoute from './ProtectedRoute';
+import ProtectedRouteIfAuth from './ProtectedRouteIfAuth';
+import LoadingSpinner from '../LoadingSpinner';
+import Error404 from '../Error404';
 
-export class AuthService extends Component {
+
+export class MainRouter extends Component {
   // authChecker = () => {
   //   isAuth().then(() => {
   //     // if(this.props.isAuthenticated === true ) {
@@ -64,4 +62,4 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {isAuth}
-)(AuthService);
+)(MainRouter);
