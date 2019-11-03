@@ -9,6 +9,9 @@ import { Route, Switch} from 'react-router-dom'
 import ProtectedRoute from '../components/ProtectedRoute';
 import ProtectedRouteIfAuth from '../components/ProtectedRouteIfAuth';
 import LoadingSpinner from '../components/LoadingSpinner';
+import Error404 from '../components/Error404';
+import Login from '../components/Login';
+import Register from '../components/Register';
 import store from '../store';
 
 export class AuthService extends Component {
@@ -43,7 +46,8 @@ export class AuthService extends Component {
           path="/listpage/:listId"
           component={SingleList}
         />
-        <ProtectedRouteIfAuth isAuthenticated={this.props.isAuthenticated} path="/" component={HomePage} />
+        <ProtectedRouteIfAuth isAuthenticated={this.props.isAuthenticated} exact path="/(|login|register)/" component={HomePage} />
+        <Route component={Error404}/>
       </Switch>
     );
     } else {
