@@ -16,7 +16,7 @@ exports.getSingleList = (req, res) => {
     user: req.session.user.id,
     _id: req.params.listId
   })
-    .then((list) => res.json(list))
+    .then((list) => list ? res.json(list) : res.status(400).json(list))
     .catch((error) => {
       res.status(400).json(error)
       console.error('error', error)
