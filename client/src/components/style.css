@@ -51,6 +51,14 @@
   margin: 0 auto;
 }
 
+.HomeContainer {
+  min-height: 87%!important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 /* Chrome iPad present/Portrait 48em = 768px */
 @media (min-width: 48em) {
   .formStyle {
