@@ -31,6 +31,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
 import TodoModal from "./TodoModal";
 import LoadingSpinner from "./LoadingSpinner";
+import Error404 from './Error404';
 
 export class SingleList extends Component {
   state = { isOpen: false };
@@ -40,7 +41,8 @@ export class SingleList extends Component {
     currTodo: PropTypes.object.isRequired,
     createNewTodo: PropTypes.func.isRequired,
     deleteOneTodo: PropTypes.func.isRequired,
-    getSingleList: PropTypes.func.isRequired
+    getSingleList: PropTypes.func.isRequired,
+    error: PropTypes.bool.isRequired
   };
 
   componentDidMount() {
@@ -200,7 +202,11 @@ export class SingleList extends Component {
         </div>
       );
     } else {
+      if(this.props.error) {
+        return <Error404/>;
+      } else {
       return <LoadingSpinner />;
+      }
     }
   }
 }
@@ -208,7 +214,8 @@ export class SingleList extends Component {
 const mapStateToProps = (state) => ({
   //Maps state to redux store as props
   currList: state.list.currList,
-  currTodo: state.list.currTodo
+  currTodo: state.list.currTodo,
+  error: state.list.error,
 });
 
 export default connect(

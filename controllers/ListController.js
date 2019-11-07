@@ -1,7 +1,6 @@
 const List = require("../models/List");
 const Todo = require("../models/Todo");
 const Item = require("../models/Item");
-const mongoose = require('mongoose');
 
 
 exports.getAllLists = (req, res) => {
@@ -12,11 +11,16 @@ exports.getAllLists = (req, res) => {
 };
 
 exports.getSingleList = (req, res) => {
+
   List.findOne({
     user: req.session.user.id,
     _id: req.params.listId
   })
-    .then((list) => res.json(list));
+    .then((list) => res.json(list))
+    .catch((error) => {
+      res.status(400).json(error)
+      console.error('error', error)
+    });
 };
 
 exports.getSingleTodo = (req, res) => {

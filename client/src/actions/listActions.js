@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { GET_LIST, GET_SINGLE_LIST, CREATE_LIST,
   DELETE_LIST, CREATE_TODO, DELETE_TODO, GET_TODO,
-CREATE_ITEM, STATUS_ITEM, STATUS_TODO, ADD_DESC } from './types'
+CREATE_ITEM, STATUS_ITEM, STATUS_TODO, ADD_DESC, INVALID_INPUT } from './types'
 
 export const getList = () => (dispatch) => {
   axios
@@ -32,8 +32,14 @@ export const getSingleList = (id) => (dispatch) => {
       dispatch({
         type: GET_SINGLE_LIST,
         payload: res.data
-      })
-    )
+        })
+      )
+      .catch(err =>
+        dispatch({
+          type: INVALID_INPUT,
+          payload: err.data
+        })
+      )
 };
 
 export const deleteOneList = (id) => (dispatch) => {

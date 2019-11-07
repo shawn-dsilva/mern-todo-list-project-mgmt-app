@@ -9,7 +9,8 @@ import {
   CREATE_ITEM,
   STATUS_ITEM,
   STATUS_TODO,
-  ADD_DESC
+  ADD_DESC,
+  INVALID_INPUT,
 } from "../actions/types";
 
 
@@ -18,6 +19,7 @@ const initialState = {
   currList:{},
   newList:{},
   currTodo: {},
+  error: false
 };
 
 export default function (state = initialState, action) {
@@ -26,8 +28,15 @@ export default function (state = initialState, action) {
     case GET_SINGLE_LIST:
       return {
         ...state,
-        currList: action.payload
+        currList: action.payload,
+        error:false
       };
+
+    case INVALID_INPUT:
+      return {
+        ...state,
+        error: true
+      }
 
     case GET_LIST:
       return {
