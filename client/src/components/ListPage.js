@@ -60,15 +60,15 @@ export class ListPage extends Component {
   displayLists = () => {
     const items = this.props.items;
     const listItems = items.map((item) =>
-    <Link to={`/listpage/${item._id}`}>
-        <ListGroupItem className="d-flex flex-row align-items-center justify-content-between" tag="button" key={item._id} action>
+        <ListGroupItem className="d-flex p-0 pr-3 flex-row align-items-center justify-content-between " key={item._id} >
+        <Link className="w-100 px-3 py-3 d-flex flex-row align-items-center justify-content-between text-decoration-none text-dark " to={`/listpage/${item._id}`}>
         <h3 className=" font-weight-bold mb-0 d-inline float-left">{item.name}</h3>
-        { <span>
+         <span>
           <Moment  date={item.date} format="MMM DD YYYY"></Moment>
-          </span>}
-        <Button className="float-right" color="danger" size="md" onClick={this.onDelete.bind(this, item._id)}> <FontAwesomeIcon icon={faTrashAlt} /></Button>
+        </span>
+        </Link>
+        <Button className="float-right " color="danger" size="md" onClick={this.onDelete.bind(this, item._id)}> <FontAwesomeIcon icon={faTrashAlt} /></Button>
         </ListGroupItem>
-      </Link>
 
     );
     return (
@@ -99,7 +99,7 @@ export class ListPage extends Component {
         <Helmet>
           <title>List Home</title>
         </Helmet>
-      <div className="w-75">
+      <div className="w-100">
         { Object.keys(this.props.currList).length === 0 ? (
         <Card className="listHomeStyle">
           <CardBody>
