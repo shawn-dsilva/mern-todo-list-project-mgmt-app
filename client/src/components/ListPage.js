@@ -60,14 +60,14 @@ export class ListPage extends Component {
   displayLists = () => {
     const items = this.props.items;
     const listItems = items.map((item) =>
-        <ListGroupItem className="d-flex ListItem" key={item._id} >
+        <ListGroupItem className="d-flex ListItem" key={item._id} action >
         <Link className="w-100  d-flex ListLink text-dark text-decoration-none" to={`/listpage/${item._id}`}>
         <h3 className=" font-weight-bold mb-0 d-inline float-left">{item.name}</h3>
          <span>
           <Moment  date={item.date} format="MMM DD YYYY"></Moment>
         </span>
         </Link>
-        <Button className="float-right " color="danger" size="md" onClick={this.onDelete.bind(this, item._id)}> <FontAwesomeIcon icon={faTrashAlt} /></Button>
+        <Button className="DeleteButton" color="danger" size="md" onClick={this.onDelete.bind(this, item._id)}> <FontAwesomeIcon icon={faTrashAlt} />  DELETE</Button>
         </ListGroupItem>
 
     );

@@ -50,7 +50,9 @@
   justify-content: space-between;
 }
 
-
+.ListLink h3 {
+  font-size: 1.4rem;
+}
 .DeleteButton {
   width: 100%;
 }
@@ -120,6 +122,11 @@
     align-items: center;
     justify-content: space-between;
   }
+
+  .ListLink h3 {
+    font-size: 1.75rem;
+  }
+
   .DeleteButton {
     width: auto;
   }
