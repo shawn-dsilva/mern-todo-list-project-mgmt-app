@@ -60,8 +60,8 @@ export class ListPage extends Component {
   displayLists = () => {
     const items = this.props.items;
     const listItems = items.map((item) =>
-        <ListGroupItem className="d-flex p-0 pr-3 flex-row align-items-center justify-content-between " key={item._id} >
-        <Link className="w-100 px-3 py-3 d-flex flex-row align-items-center justify-content-between text-decoration-none text-dark " to={`/listpage/${item._id}`}>
+        <ListGroupItem className="d-flex ListItem" key={item._id} >
+        <Link className="w-100  d-flex ListLink text-dark " to={`/listpage/${item._id}`}>
         <h3 className=" font-weight-bold mb-0 d-inline float-left">{item.name}</h3>
          <span>
           <Moment  date={item.date} format="MMM DD YYYY"></Moment>
