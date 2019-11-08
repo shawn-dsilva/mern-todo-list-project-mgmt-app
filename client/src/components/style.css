@@ -36,10 +36,23 @@
 
 .ListItem {
   padding:0!important;
-  padding-right:1rem!important;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin: 1rem 0;
+
+}
+
+.ListLink {
+  padding: 1rem 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.DeleteButton {
+  width: 100%;
 }
 /* Done with flex instead */
 /* .listItem {
@@ -89,6 +102,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin: 0.5rem 0;
   }
 
   .listHomeStyle {
@@ -105,6 +119,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+  }
+  .DeleteButton {
+    width: auto;
   }
 
 }
