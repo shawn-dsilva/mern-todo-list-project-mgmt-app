@@ -103,7 +103,7 @@ export class SingleList extends Component {
           <Helmet>
             <title>{this.props.currList.name}</title>
           </Helmet>
-          <Card className=" w-75 listStyle my-5">
+          <Card className=" listStyle my-5">
             <CardBody>
               <CardTitle>
                 <h1 className="font-weight-bold">{this.props.currList.name}</h1>

@@ -22,9 +22,13 @@
   box-shadow: 0 0 3px 3px #e7e7e7;
   width:100%!important;
   cursor: pointer;
-  padding: 1.2rem;
   margin: 0 auto!important;
 }
+
+.card-body {
+  padding:0.7rem!important;
+}
+
 .listHomeStyle {
   border:solid lightgrey!important;
   border-width: 1px!important;
@@ -129,6 +133,21 @@
 
   .DeleteButton {
     width: auto;
+  }
+
+  .listStyle {
+    border:solid lightgrey!important;
+    border-width: 1px!important;
+    border-radius: 25px!important;
+    box-shadow: 0 0 3px 3px #e7e7e7;
+    width:75%!important;
+    cursor: pointer;
+    padding: 1.2rem;
+    margin: 0 auto!important;
+  }
+
+  .card-body {
+    padding:1.25rem!important;
   }
 
 }
