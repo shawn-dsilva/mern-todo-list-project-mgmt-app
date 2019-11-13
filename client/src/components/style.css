@@ -77,6 +77,14 @@
   margin: 0 auto;
 }
 
+.ChecklistStyle {
+  margin:1rem 0;
+  width:100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .HomeContainer {
   min-height: 87%!important;
   display: flex;
@@ -85,6 +93,10 @@
   text-align: center;
 }
 
+.DescText {
+  width:100%;
+  margin: 1rem 0;
+}
 /* Chrome iPad present/Portrait 48em = 768px */
 @media (min-width: 48em) {
   .formStyle {
@@ -146,9 +158,9 @@
     margin: 0 auto!important;
   }
 
-  .card-body {
+  /* .card-body {
     padding:1.25rem!important;
-  }
+  } */
 
 }
 
@@ -156,7 +168,7 @@
 @media (min-width: 75em) {
   .formStyle {
     display: block;
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
   }
 
@@ -168,13 +180,26 @@
     width:60%!important;
     margin: 0 auto!important;
   }
+
+  .ChecklistStyle {
+    margin-left:1.5rem;
+    width:60%!important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .DescText {
+    width:75%;
+    margin-left:1.5rem;
+  }
 }
 
 /* Full HD displays/Landscape 120em = 1920px */
 @media (min-width: 120em) {
   .formStyle {
     display: block;
-    width: 60%;
+    width:70%;
     margin: 0 auto;
   }
 

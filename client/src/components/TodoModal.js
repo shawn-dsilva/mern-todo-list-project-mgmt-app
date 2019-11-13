@@ -122,7 +122,7 @@ export class TodoModal extends Component {
       todo.checklist.map((item) => {
       if(!item.isDone) {
         return (
-      <ListGroupItem className=" shadow-sm my-3 ml-4 w-50 d-flex flex-row align-items-center justify-content-between" key={item._id} >
+      <ListGroupItem className=" shadow-sm  d-flex ChecklistStyle" key={item._id} >
          <span className=" mb-0 d-inline float-left">
            <FormGroup check>
              <Label check>
@@ -134,7 +134,7 @@ export class TodoModal extends Component {
         </ListGroupItem>)}
       else {
         return (
-        <ListGroupItem color="secondary" className=" shadow-sm my-3 ml-4 w-50 d-flex flex-row align-items-center justify-content-between" key={item._id} action>
+        <ListGroupItem color="secondary" className="shadow-sm  d-flex ChecklistStyle" key={item._id} action>
          <span className=" mb-0 d-inline float-left">
            <FormGroup check>
              <Label check>
@@ -192,9 +192,9 @@ export class TodoModal extends Component {
               </Button>
             </h4>
 
-            <div className="my-3 w-50">
+            <div className="DescText">
               {!this.state.isOpenDescInput ? (
-                   <p className="pl-4 text-left text-muted">{todo.desc}</p>
+                   <p className="text-left text-muted">{todo.desc}</p>
               ) : (
                 <Form onSubmit={this.descSubmit}>
                 <FormGroup>
