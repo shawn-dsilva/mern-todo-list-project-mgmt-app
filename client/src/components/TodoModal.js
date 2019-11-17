@@ -46,21 +46,21 @@ export class TodoModal extends Component {
       case "Done":
         status = "Done";
         return (
-            <span className="text-left badge badge-success">
+            <span className=" text-left badge badge-success">
               {status}
             </span>
         );
       case "InProgress":
         status = "In Progress";
         return (
-            <span className="text-left badge badge-warning">
+            <span className=" text-left badge badge-warning">
               {status}
             </span>
         );
       case "NotStarted":
         status = "Not Started";
         return (
-            <span className="text-left badge badge-danger">
+            <span className=" text-left badge badge-danger">
               {status}
             </span>
         );
@@ -77,7 +77,7 @@ export class TodoModal extends Component {
     { name:'Done', color: 'border-success bg-success'},
     {name:'In Progress', color: 'border-warning bg-warning'},
     {name:'Not Started', color: 'border-danger bg-danger'}];
-    const className = "text-left  mb-0 mx-2 d-inline "
+    const className = "text-left  mb-0 mx-1 d-inline "
     return (
       statusCodes.map((status) =>
         <Button key={status.name} className={className + status.color} onClick={(e) => {this.handleStatusChange(status.name, e)}}>
@@ -204,13 +204,13 @@ export class TodoModal extends Component {
                      id="desc"
                      placeholder="Add a description here"
                      rows="4"
-                     className="w-100 ml-4 my-4"
+                     className="w-100 MarginLeftToggle my-4"
                      onChange={this.descOnChange}
                      autoComplete="off"
                      />
                   <div className="d-flex flex-row w-50">
-                  <Button className=" w-100 ml-4" color="success"> Save </Button>
-                 <Button onClick={this.toggleEditBox} className=" w-100 ml-4" color="light"> Cancel </Button>
+                  <Button className=" w-100 MarginLeftToggle" color="success"> Save </Button>
+                 <Button onClick={this.toggleEditBox} className=" w-100 MarginLeftToggle" color="light"> Cancel </Button>
                  </div>
                  </FormGroup>
                </Form>
@@ -230,20 +230,20 @@ export class TodoModal extends Component {
                  name="itemName"
                  id="itemName"
                  placeholder="checklist name"
-                 className="w-50 ml-4 my-4"
+                 className="AddTodo my-4"
                  onChange={this.onChange}
                  autoComplete="off"
                  />
-               <Button className="w-50 ml-4" color="primary">
+               <Button className="AddTodo" color="primary">
              <FontAwesomeIcon icon={faPlus} /> &nbsp; Add Checklist Item </Button>
              </FormGroup>
            </Form>
 
-            { !this.state.isOpenStatusMenu ? <h4 className="text-left font-weight-bold">
+            { !this.state.isOpenStatusMenu ? <h4 className="mt-5 text-left font-weight-bold">
               Status: &nbsp;
               {this.statusRender(todo.status)}
-              <Button className="ml-4 bg-light border-light text-dark " size="sm" onClick={this.toggleStatusMenu}>Change Status</Button>
-            </h4>: <div> <h4 className="font-weight-bold">Change Status</h4>  {this.StatusMenu()} </div>
+              <Button className="ChangeStatus bg-light border-secondary text-dark "  onClick={this.toggleStatusMenu}>Change Status</Button>
+            </h4>: <div> <h4 className="mt-5 font-weight-bold">Change Status</h4>  {this.StatusMenu()} </div>
           }
 
           </ModalBody>
