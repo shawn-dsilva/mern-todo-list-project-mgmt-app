@@ -40,8 +40,9 @@ export class MainNavbar extends Component {
     this.props.logout();
   };
 
+  baseurl = '/list-wala'
+
   render() {
-    baseurl = '/list-wala'
     const { isAuthenticated, user } = this.props.auth;
 
 
@@ -63,10 +64,10 @@ export class MainNavbar extends Component {
     const guestLinks = (
       <Fragment>
         <NavItem>
-        <NavLink className="divStyle text-white font-weight-bold" href={baseurl + '/login'}>Sign In</NavLink>
+        <NavLink className="divStyle text-white font-weight-bold" href={this.baseurl + '/login'}>Sign In</NavLink>
         </NavItem>
         <NavItem>
-        <NavLink className="divStyle text-white font-weight-bold" href={baseurl + '/register'}> Register </NavLink>
+        <NavLink className="divStyle text-white font-weight-bold" href={this.baseurl + '/register'}> Register </NavLink>
         </NavItem>
       </Fragment>
     );
@@ -83,7 +84,7 @@ export class MainNavbar extends Component {
 
             { isAuthenticated ? <Nav className="mr-auto text-white" navbar>
            <NavItem>
-              <NavLink className="text-white font-weight-bold active" href={baseurl + '/listpage'}> Back to List Home </NavLink>
+              <NavLink className="text-white font-weight-bold active" href={this.baseurl + '/listpage'}> Back to List Home </NavLink>
             </NavItem>
             </Nav> : null}
 
