@@ -11,6 +11,8 @@ import {
   LOGOUT_SUCCESS,
 } from "./types";
 
+axios.defaults.baseURL = "https://demos.shawndsilva.com/list-wala"
+
 //Check if user is already logged in
 export const isAuth = () => (dispatch) => {
 
