@@ -62,10 +62,10 @@ export class MainNavbar extends Component {
     const guestLinks = (
       <Fragment>
         <NavItem>
-        <NavLink className="divStyle text-white font-weight-bold"><Link to="/login">Sign In</Link></NavLink>
+        <NavLink className="divStyle text-white font-weight-bold"><Link className="text-white font-weight-bold active" to="/login">Sign In</Link></NavLink>
         </NavItem>
         <NavItem>
-        <NavLink className="divStyle text-white font-weight-bold" ><Link to="/register">Sign In</Link></NavLink>
+        <NavLink className="divStyle text-white font-weight-bold" ><Link className="text-white font-weight-bold active" to="/register">Register</Link></NavLink>
         </NavItem>
       </Fragment>
     );
@@ -82,7 +82,7 @@ export class MainNavbar extends Component {
 
             { isAuthenticated ? <Nav className="mr-auto text-white" navbar>
            <NavItem>
-              <NavLink className="text-white font-weight-bold active" > <Link to="/listpage">Back to List Home </Link></NavLink>
+              <NavLink className="text-white font-weight-bold active" > <Link className="text-white font-weight-bold active" to="/listpage">Back to List Home </Link></NavLink>
             </NavItem>
             </Nav> : null}
 
