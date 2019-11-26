@@ -76,7 +76,7 @@ export class MainNavbar extends Component {
       <div>
         <Navbar color="dark" dark expand="sm" >
           <Container>
-            <NavbarBrand href="/"><h3 className="mb-0"> <strong className="text-primary" >List</strong><span>Wala</span></h3></NavbarBrand>
+            <NavbarBrand href={this.baseurl}><h3 className="mb-0"> <strong className="text-primary" >List</strong><span>Wala</span></h3></NavbarBrand>
 
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
