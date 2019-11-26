@@ -41,6 +41,7 @@ export class MainNavbar extends Component {
   };
 
   render() {
+    baseurl = '/list-wala'
     const { isAuthenticated, user } = this.props.auth;
 
 
@@ -62,10 +63,10 @@ export class MainNavbar extends Component {
     const guestLinks = (
       <Fragment>
         <NavItem>
-        <NavLink className="divStyle text-white font-weight-bold"><Link className="text-white font-weight-bold active" to="/login">Sign In</Link></NavLink>
+        <NavLink className="divStyle text-white font-weight-bold" href={baseurl + '/login'}>Sign In</NavLink>
         </NavItem>
         <NavItem>
-        <NavLink className="divStyle text-white font-weight-bold" ><Link className="text-white font-weight-bold active" to="/register">Register</Link></NavLink>
+        <NavLink className="divStyle text-white font-weight-bold" href={baseurl + '/register'}> Register </NavLink>
         </NavItem>
       </Fragment>
     );
@@ -74,7 +75,7 @@ export class MainNavbar extends Component {
       <div>
         <Navbar color="dark" dark expand="sm" >
           <Container>
-            <NavbarBrand><Link to="/"><h3 className="mb-0"> <strong className="text-primary" >List</strong><span>Wala</span></h3></Link></NavbarBrand>
+            <NavbarBrand href="/"><h3 className="mb-0"> <strong className="text-primary" >List</strong><span>Wala</span></h3></NavbarBrand>
 
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
@@ -82,7 +83,7 @@ export class MainNavbar extends Component {
 
             { isAuthenticated ? <Nav className="mr-auto text-white" navbar>
            <NavItem>
-              <NavLink className="text-white font-weight-bold active" > <Link className="text-white font-weight-bold active" to="/listpage">Back to List Home </Link></NavLink>
+              <NavLink className="text-white font-weight-bold active" href={baseurl + '/listpage'}> Back to List Home </NavLink>
             </NavItem>
             </Nav> : null}
 
