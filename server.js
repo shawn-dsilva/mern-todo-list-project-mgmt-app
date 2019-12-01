@@ -61,8 +61,8 @@ app.use(
 router.get("/list-wala/api/", (req, res) => res.send("HELLO FRIEND"));
 
 // API / Routes;
-app.use("/api/users", require("./routes/users"));
-app.use("/api/lists", require("./routes/lists"));
+app.use("/list-wala/api/users", require("./routes/users"));
+app.use("/list-wala/api/lists", require("./routes/lists"));
 
 // app.use("/api/auth", require("./routes/auth"));
 

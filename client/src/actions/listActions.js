@@ -3,7 +3,7 @@ import { GET_LIST, GET_SINGLE_LIST, CREATE_LIST,
   DELETE_LIST, CREATE_TODO, DELETE_TODO, GET_TODO,
 CREATE_ITEM, STATUS_ITEM, STATUS_TODO, ADD_DESC, INVALID_INPUT } from './types'
 
-// axios.defaults.baseURL = "https://demos.shawndsilva.com/list-wala"
+ axios.defaults.baseURL = "https://demos.shawndsilva.com/list-wala"
 
 
 

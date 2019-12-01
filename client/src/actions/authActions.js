@@ -15,7 +15,7 @@ import {
 
 //axios.defaults.baseURL = "http://localhost:5000";
 
-// axios.defaults.baseURL = "https://demos.shawndsilva.com/sessions-auth-app"
+ axios.defaults.baseURL = "https://demos.shawndsilva.com/sessions-auth-app"
 
 //Check if user is already logged in
 export const isAuth = () => (dispatch) => {
