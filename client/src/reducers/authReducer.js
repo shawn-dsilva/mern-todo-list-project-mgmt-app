@@ -19,11 +19,6 @@ const initialState = {
 export default function (state = initialState, action) {
 
   switch (action.type) {
-    case REGISTER_SUCCESS:
-      return {
-        ...state,
-        user: action.payload
-      };
 
     case LOGIN_SUCCESS:
     case AUTH_SUCCESS:
@@ -36,6 +31,7 @@ export default function (state = initialState, action) {
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case LOGOUT_SUCCESS:
+    case REGISTER_SUCCESS:
     case REGISTER_FAIL:
     case AUTH_FAIL:
       return {

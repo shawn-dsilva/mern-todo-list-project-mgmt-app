@@ -9,11 +9,12 @@ import {
    CardTitle,
    CardSubtitle,
   CardBody,
-  Alert
+  Alert,
+  Spinner
 } from "reactstrap";
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
-import { buttonClicked } from "../actions/uiActions";
+import { buttonClicked, isLoading } from "../actions/uiActions";
 import { login } from "../actions/authActions";
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom'
@@ -31,10 +32,13 @@ class Login extends Component {
 
   static propTypes = {
     buttonClicked: PropTypes.func.isRequired,
+    isLoading: PropTypes.func.isRequired,
     button: PropTypes.bool,
     login: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
     status: PropTypes.object.isRequired,
+    loading: PropTypes.bool
+
   };
 
   componentDidMount() {
@@ -47,7 +51,7 @@ componentDidUpdate(prevProps) {
      if (status !== prevProps.status) {
 
       if (status.id === "LOGIN_FAIL") {
-        this.setState({ msg: status.statusMsg.msg });
+        this.setState({ msg: status.statusMsg });
       }
     }
 };
@@ -63,6 +67,7 @@ onSubmit = (e) => {
     const { email, password} = this.state;
 
     const user = { email, password};
+    this.props.isLoading();
 
     this.props.login(user);
   };
@@ -101,7 +106,6 @@ onSubmit = (e) => {
                       placeholder="you@youremail.com"
                       className="mb-3"
                       onChange={this.onChange}
-                      autoComplete="off"
                     />
 
                     <Label for="password">Password</Label>
@@ -116,7 +120,8 @@ onSubmit = (e) => {
                       autoComplete="off"
                     />
                     <Button size="lg" color="primary" style={{ marginTop: "2rem" }} block>
-                      Login
+                       { this.props.loading ?
+                       <span >Logging in.. <Spinner size="sm" color="light" /></span> : <span>Login</span>}
                     </Button>
                   </FormGroup>
                 </Form>
@@ -132,7 +137,9 @@ const mapStateToProps = (state) => ({ //Maps state element in redux store to pro
   //location of element in the state is on the right and key is on the left
   button: state.ui.button, //store.getState().ui.button another way to get button bool
   isAuthenticated: state.auth.isAuthenticated,
-  status: state.status
+  status: state.status,
+  loading: state.ui.loading
+
 });
 
-export default connect(mapStateToProps,{ login, buttonClicked })(Login);
+export default connect(mapStateToProps,{ login, isLoading, buttonClicked })(Login);

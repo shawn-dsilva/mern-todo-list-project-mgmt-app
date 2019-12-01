@@ -10,6 +10,7 @@ export const BUTTON_CLICKED = 'BUTTON_CLICKED';
 export const BUTTON_RESET = 'BUTTON_RESET';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
+export const IS_LOADING = 'IS_LOADING';
 export const GET_LIST = 'GET_LIST';
 export const GET_SINGLE_LIST = 'GET_SINGLE_LIST';
 export const CREATE_LIST = 'CREATE_LIST';

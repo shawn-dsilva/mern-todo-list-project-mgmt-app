@@ -10,11 +10,12 @@ import {
   CardTitle,
   CardSubtitle,
   CardBody,
-  Alert
+  Alert,
+  Spinner
 } from "reactstrap";
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
-import { buttonClicked } from "../actions/uiActions";
+import { buttonClicked, isLoading } from "../actions/uiActions";
 import { Link } from "react-router-dom";
 import { register } from "../actions/authActions";
 import "./style.css";
@@ -29,9 +30,11 @@ class Register extends Component {
 
   static propTypes = {
     buttonClicked: PropTypes.func.isRequired,
+    isLoading: PropTypes.func.isRequired,
     button: PropTypes.bool,
     register: PropTypes.func.isRequired,
-    status: PropTypes.object.isRequired
+    status: PropTypes.object.isRequired,
+    loading: PropTypes.bool
   };
 
   // Removes sign in and register buttons from homepage
@@ -46,9 +49,9 @@ class Register extends Component {
     // Changes status message if it is different from previous message
     if (status !== prevProps.status) {
       if (status.id === "REGISTER_FAIL") {
-        this.setState({ msg: status.statusMsg.msg });
+        this.setState({ msg: status.statusMsg });
       } else {
-        this.setState({ msg: this.props.status.statusMsg.msg });
+        this.setState({ msg: this.props.status.statusMsg });
       }
     }
 
@@ -72,7 +75,7 @@ class Register extends Component {
     const { name, email, password } = this.state;
 
     const user = { name, email, password };
-
+    this.props.isLoading();
     this.props.register(user);
   };
 
@@ -136,7 +139,6 @@ class Register extends Component {
                   placeholder="you@youremail.com"
                   className="mb-3"
                   onChange={this.onChange}
-                  autoComplete="off"
                 />
 
                 <Label for="password">Password</Label>
@@ -155,7 +157,8 @@ class Register extends Component {
                   color="primary"
                   style={{ marginTop: "2rem" }}
                   block>
-                  Register
+                  { this.props.loading ?
+                       <span >Registering.. <Spinner size="sm" color="light" /></span> : <span>Register</span>}
                 </Button>
               </FormGroup>
             </Form>
@@ -169,10 +172,11 @@ class Register extends Component {
 const mapStateToProps = (state) => ({
   //Maps state to redux store as props
   button: state.ui.button,
-  status: state.status
+  status: state.status,
+  loading: state.ui.loading
 });
 
 export default connect(
   mapStateToProps,
-  { register, buttonClicked }
+  { register, isLoading, buttonClicked }
 )(Register);

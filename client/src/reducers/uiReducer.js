@@ -1,6 +1,7 @@
 import {
   BUTTON_CLICKED,
-  BUTTON_RESET
+  BUTTON_RESET,
+  IS_LOADING,
 } from "./../actions/types";
 
 const initialState = {
@@ -21,6 +22,11 @@ export default function (state = initialState, action ) {
         button: true
       };
 
+      case IS_LOADING:
+        return {
+          ...state,
+          loading: !state.loading
+        };
     default:
         return state;
   }

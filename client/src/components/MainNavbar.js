@@ -50,7 +50,7 @@ export class MainNavbar extends Component {
       <Fragment>
           <NavItem>
               <span className="navbar-text mr-3">
-                  <strong>{ user ? `Welcome,  ${user.sessUser.name}` : '' }</strong>
+                  <strong>{ user ? `Welcome,  ${user.name}` : '' }</strong>
               </span>
           </NavItem>
         <NavItem>
