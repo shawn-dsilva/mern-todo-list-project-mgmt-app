@@ -19,7 +19,8 @@ Live Demo on https://demos.shawndsilva.com/list-wala
 
 ## Feature Walkthrough GIF
 
-https://imgur.com/Ik7btS0
+
+![List-Wala-Feature-Demo](https://imgur.com/Ik7btS0.gif)
 
 
 ## Prerequisites
