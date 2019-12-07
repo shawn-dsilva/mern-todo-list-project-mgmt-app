@@ -13,9 +13,8 @@ import {
 } from "./types";
 
 
-//axios.defaults.baseURL = "http://localhost:5000";
-
- axios.defaults.baseURL = "https://demos.shawndsilva.com/sessions-auth-app"
+//axios.defaults.baseURL = "https://demos.shawndsilva.com/list-wala"
+// Uncomment the above with the baseurl where you host this app in prod, leave as-is for development
 
 //Check if user is already logged in
 export const isAuth = () => (dispatch) => {
