@@ -39,11 +39,15 @@ export class HomePage extends Component {
     return (
        <div className="HomeContainer">
         <div className="main">
+          <br></br>
           <h1> <strong className="text-primary" >List</strong><span>Wala</span></h1>
           <br/>
-            <h5>A ToDo List and Project Management App
-              <br></br>Built with React + Redux, NodeJS, Express, MongoDB and Bootstrap. <br></br>Hosted using Nginx & Docker on AWS</h5>
-          <br/>
+            <h5>A ToDo List and Project Management Web App, supporting user authentication,
+            <br></br>sessions, protected routes, CRUD functions on descriptions, <br></br>checklists and status changes and more</h5>
+            <h5>Source Code on and full feature list <i class="devicon-github-plain colored"></i>
+ <a href="github.com/shawn-dsilva/list-wala" > Github</a></h5>
+ <br></br>
+
           <div>
 
             <Switch>
@@ -60,6 +64,21 @@ export class HomePage extends Component {
              </Link>}
 
           </div>
+          <br></br>
+          <br></br>
+              <div class="builtwith">
+              <i class="size devicon-react-original-wordmark colored"></i>
+              <i class="size devicon-bootstrap-plain-wordmark colored"></i>
+              <i class="size devicon-nodejs-plain colored"></i>
+              <i class="size devicon-mongodb-plain-wordmark colored"></i>
+              <i class="size devicon-docker-plain-wordmark colored"></i>
+              <i class="size devicon-nginx-plain-wordmark colored"></i>
+              <i class="size devicon-ubuntu-plain-wordmark colored"></i>
+              </div>
+              <p>Built with React + Redux, Bootstrap, NodeJS + Express and MongoDB
+              <br></br>Hosted in Docker containers running Nginx, on an Ubuntu VM</p>
+
+          <br/>
         </div>
     </div>
     )

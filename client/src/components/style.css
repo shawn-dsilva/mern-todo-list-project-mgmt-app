@@ -188,6 +188,22 @@
   font-size: 85%!important;
 }
 
+.iconify {
+  font-size: 3.5rem;
+}
+
+.size {
+  font-size: 5rem;
+  padding:1rem 0.5rem;
+}
+
+.builtwith {
+  border: 2px lightgray solid;
+  border-radius: 25px;
+  padding:1rem;
+  margin:1rem;
+}
+
 
   /* .card-body {
     padding:1.25rem!important;
