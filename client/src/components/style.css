@@ -273,7 +273,7 @@
 @media (min-width: 75em) {
   .formStyle {
     display: block;
-    width: 70%;
+    width: 45%;
     margin: 0 auto;
   }
 
@@ -344,7 +344,7 @@
 @media (min-width: 120em) {
   .formStyle {
     display: block;
-    width:70%;
+    width:35%;
     margin: 0 auto;
   }
 
