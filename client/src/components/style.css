@@ -105,6 +105,45 @@
   text-align: center;
 }
 
+.intro-content {
+  margin: 0 1rem;
+  font-size: 1rem!important;
+}
+
+.builtwith-content {
+  margin: 0 1rem;
+  font-size: 1rem!important;
+}
+
+.size {
+  font-size: 4rem;
+  padding:0.25rem 0.25rem;
+}
+
+.nginx-svg {
+  padding:0.25rem 0.25rem;
+  height: 4rem;
+  width: 4rem;
+  fill:#269539;
+}
+
+.aws-svg {
+  padding:0.25rem 0.25rem;
+  height: 5rem;
+  width: 5rem;
+  fill:#FF9900;
+}
+
+.builtwith {
+  border: 2px lightgray solid;
+  border-radius: 25px;
+  padding:1rem;
+  margin:1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 .DescText {
   width:100%;
   margin: 1rem 0;
@@ -128,6 +167,14 @@
     display: block;
     width: 50%;
     margin: 0 auto;
+  }
+  .builtwith {
+    border: 2px lightgray solid;
+    border-radius: 25px;
+    padding:1rem;
+    margin: 1rem auto;
+    width: 45%;
+
   }
 }
 
@@ -197,14 +244,25 @@
   padding:1rem 0.5rem;
 }
 
-.builtwith {
-  border: 2px lightgray solid;
-  border-radius: 25px;
-  padding:1rem;
-  margin:1rem;
+
+
+.nginx-svg {
+  margin:1rem 0.5rem;
+  height: 5rem;
+  width: 5rem;
+  fill:#269539;
 }
 
-
+.aws-svg {
+  margin:1rem 0.5rem;
+  height: 6rem;
+  width: 6rem;
+  fill:#FF9900;
+}
+.intro-content {
+  margin: 0 30%;
+  font-size: 1.2rem!important;
+}
   /* .card-body {
     padding:1.25rem!important;
   } */
@@ -264,6 +322,14 @@
     font-weight: 2rem;
   }
 
+  .builtwith {
+    border: 2px lightgray solid;
+    border-radius: 25px;
+    padding:1rem;
+    margin: 1rem auto;
+    width: 35%;
+
+  }
   .modal-body {
     padding:1rem!important;
   }
@@ -282,6 +348,14 @@
     margin: 0 auto;
   }
 
+  .builtwith {
+    border: 2px lightgray solid;
+    border-radius: 25px;
+    padding:1rem;
+    margin: 1rem auto;
+    width: 30%;
+
+  }
   .listHomeStyle {
     border:solid lightgrey!important;
     border-width: 1px!important;
