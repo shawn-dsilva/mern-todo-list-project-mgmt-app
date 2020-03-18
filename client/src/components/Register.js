@@ -85,7 +85,7 @@ class Register extends Component {
     // If HTTP 400 error, render alert with red color, else if
     // it is 200 OK, render alert in green
     let alert;
-    if (this.state.msg && this.props.status.respCode === 400) {
+    if (this.state.msg && this.props.status.respCode >= 400) {
       alert = <Alert color="danger">{this.state.msg}</Alert>;
     } else if (this.state.msg && this.props.status.respCode === 200) {
       alert = (

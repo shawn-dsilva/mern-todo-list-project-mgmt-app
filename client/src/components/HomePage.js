@@ -42,7 +42,7 @@ export class HomePage extends Component {
           <br></br>
           <h1> <strong className="text-primary" >List</strong><span>Wala</span></h1>
           <br/>
-          <div className="intro-content">
+          <div class="intro-content">
             <p>A ToDo List and Project Management Web App, supporting user authentication,
             sessions, protected routes, CRUD functions on descriptions, checklists and status changes and more</p>
             <p>Source Code and full feature list on <i class="devicon-github-plain colored"></i>
