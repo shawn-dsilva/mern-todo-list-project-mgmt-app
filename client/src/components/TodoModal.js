@@ -8,9 +8,7 @@ import {
   Form,
   FormGroup,
   ListGroupItem,
-  ListGroup,
   Input,
-  CardBody,
   Label
 } from "reactstrap";
 import PropTypes from "prop-types";
@@ -21,7 +19,6 @@ import { connect } from "react-redux";
 
 import {
   faTasks,
-  faInfoCircle,
   faEdit,
   faPlus
 } from "@fortawesome/free-solid-svg-icons";
@@ -64,6 +61,8 @@ export class TodoModal extends Component {
               {status}
             </span>
         );
+      default:
+        return;
     }
   };
 

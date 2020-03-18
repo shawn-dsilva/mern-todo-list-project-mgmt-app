@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import Helmet from "react-helmet";
 
 import {
@@ -14,7 +14,6 @@ import {
   FormGroup,
   Input,
   Button,
-  Spinner
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -61,6 +60,8 @@ export class SingleList extends Component {
       case "NotStarted":
         status = "Not Started";
         return <span className="text-left badge badge-danger">{status}</span>;
+      default:
+        return;
     }
   };
 

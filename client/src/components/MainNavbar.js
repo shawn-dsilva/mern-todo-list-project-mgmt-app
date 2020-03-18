@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import { Route, Switch, Link } from 'react-router-dom'
 import {
   Collapse,
   Navbar,
@@ -12,8 +11,6 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Login from "./Login";
-import Register from "./Register";
 import { logout } from '../actions/authActions';
 import { buttonReset} from '../actions/uiActions';
 

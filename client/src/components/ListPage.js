@@ -20,10 +20,9 @@ import Moment from 'react-moment';
 import 'moment-timezone'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SingleList from "./SingleList";
-import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { Route, Switch, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 export class ListPage extends Component {
