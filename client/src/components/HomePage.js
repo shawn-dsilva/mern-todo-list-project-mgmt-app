@@ -46,7 +46,7 @@ export class HomePage extends Component {
             <p>A ToDo List and Project Management Web App, supporting user authentication,
             sessions, protected routes, CRUD functions on descriptions, checklists and status changes and more</p>
             <p>Source Code and full feature list on <i class="devicon-github-plain colored"></i>
- <a href="github.com/shawn-dsilva/list-wala" > Github</a></p>
+ <a href="https://github.com/shawn-dsilva/list-wala" > Github</a></p>
  </div><br></br>
 
           <div>
