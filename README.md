@@ -1,6 +1,9 @@
 
 # List-Wala
 
+⚠ Update 3rd April 2021 : React and NodeJS packaged updated/fixed using npm audit, Packages updated may have breaking changes, If running the code in this repo causes any issues, send me an **e-mail** ⚠
+
+
 List-Wala is a Fully Free & Open Source, Dockerized, To-Do List and Project Management web app, supporting user authentication, routing, protected routes, descriptions, status changes, checklists and deletions, Fully responsive across Desktop, Tablet and Mobile.
 Live Demo on https://demos.shawndsilva.com/list-wala
 
