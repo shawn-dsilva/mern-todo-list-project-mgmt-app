@@ -29,7 +29,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "moment-timezone": "^0.5.28",
-    "mongoose": "^5.9.5",
+    "mongoose": "^5.12.3",
     "morgan": "^1.9.1",
     "react-router-dom": "^5.1.2",
     "session-file-store": "^1.4.0"
