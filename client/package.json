@@ -30,8 +30,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000/list-wala",
-  "homepage": "https://demos.shawndsilva.com/list-wala",
+  "proxy": "http://todo_server:5000/list-wala",
   "eslintConfig": {
     "extends": "react-app"
   },
