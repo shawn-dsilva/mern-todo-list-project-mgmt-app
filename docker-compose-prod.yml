@@ -1,31 +1,35 @@
 version: "3"
 services:
-    list-server:
-        container_name: list-server
-        hostname: list-server
-        build:
-            context: .
-            dockerfile: dockerfile
-        ports:
-            - "5001:5001"
-        volumes:
-            - .:/server
-            - /server/node_modules
+  list-server:
+    container_name: list-server
+    hostname: list-server
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "5001:5001"
+    volumes:
+      - .:/server
+      - /server/node_modules
+    networks:
+      - common_ext_network
 
-    list-client:
-        container_name: list-client
-        hostname: list-client
-        build:
-            context: ./client
-            dockerfile: Dockerfile-prod
-        ports:
-            - "3001:3001"
-        volumes:
-            - ./client:/client
-            - /client/node_modules
-        links:
-            - list-server
+  list-client:
+    container_name: list-client
+    hostname: list-client
+    build:
+      context: ./client
+      dockerfile: Dockerfile-prod
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./client:/client
+      - /client/node_modules
+    links:
+      - list-server
+    networks:
+      - common_ext_network
 networks:
-    default:
-        external:
-            name: nginxrpgateway_default
+  common_ext_network:
+    external:
+      name: nginx-rp-gateway_default
