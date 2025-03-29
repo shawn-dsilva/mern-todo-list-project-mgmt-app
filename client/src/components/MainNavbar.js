@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../actions/authActions";
 import { buttonReset } from "../actions/uiActions";
+import { IS_REACT_PROD } from "../constants";
 
 export class MainNavbar extends Component {
   state = {
@@ -37,8 +38,7 @@ export class MainNavbar extends Component {
     this.props.logout();
   };
 
-  baseurl = "/list-wala";
-  baseurl = "localhost";
+  baseurl = IS_REACT_PROD ? "/list-wala" : "";
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
