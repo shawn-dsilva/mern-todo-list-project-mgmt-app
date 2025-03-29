@@ -1,7 +1,7 @@
 version: "3"
 services:
   server:
-    container_name: todo_server
+    container_name: list-server
     build:
       context: .
       dockerfile: dockerfile
@@ -12,7 +12,7 @@ services:
       - /server/node_modules
 
   client:
-    container_name: todo_client
+    container_name: list-client
     build:
       context: ./client
       dockerfile: dockerfile
